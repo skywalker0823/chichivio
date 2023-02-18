@@ -28,5 +28,7 @@ def contact_post():
 if __name__ == '__main__':
     app.run(debug=True,port=5000,host='0.0.0.0')
 
+# About Docker
 # docker image build -t chi_vio .
 # docker run -dp5000:5000 --name chi_vio_container chi_vio
+
