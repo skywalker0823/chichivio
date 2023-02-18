@@ -18,3 +18,12 @@ The CloudFlare will cache the website and provide CDN service.
 ### Google Storage(working)
 
 ### Cloud SQL(working)
+
+
+## How to use
+### Development mode
+* python3 -m venv venv(only need to do once, if you have already created a virtual environment, you can skip this step)
+* source venv/bin/activate
+* pip install -r requirements.txt
+* python3 app.py
+* open 127.0.0.1:5000
