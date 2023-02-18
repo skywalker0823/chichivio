@@ -6,3 +6,7 @@ steps:
   # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-west1-docker.pkg.dev/${PROJECT_ID}/chichivio/web:latest']
+
+  # Step 3: Deploy the Docker image to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'chichivio', '--image', 'us-west1-docker.pkg.dev/${PROJECT_ID}/chichivio/web:latest', '--platform', 'managed', '--region', 'us-west1', '--allow-unauthenticated']
