@@ -1,3 +1,4 @@
+steps:  
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-west1-docker.pkg.dev/${PROJECT_ID}/chichivio/web:latest', '.']
