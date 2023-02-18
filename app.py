@@ -1,7 +1,7 @@
 # static website, flask app, personal website, huichi
 from flask import Flask, render_template, request, redirect, url_for
 
-app = Flask(__name__, static_url_path='/static', static_folder='static', template_folder='templates')
+app = Flask(__name__, static_url_path='/', static_folder='static', template_folder='templates')
 
 @app.route('/')
 def index():
