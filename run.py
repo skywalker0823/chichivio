@@ -10,7 +10,7 @@ if __name__ == '__main__':
 # python3 -m venv venv
 # source venv/bin/activate
 # pip install -r requirements.txt
-# python3 app.py
+# python3 run.py
 # open 127.0.0.1:5000
 
 # How to exit?
