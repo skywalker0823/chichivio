@@ -16,9 +16,19 @@
 		<a href="#">Lessons</a>
 		<a href="#">Pricing</a>
 		<a href="#">Contact</a>
+        <a href="#" onclick="logout()">Logout</a>
 	</nav>
 	<main>
 		<section>
+            <div class="login-container">
+                <div>
+                  <label for="username">Username:</label>
+                  <input type="text" id="username" name="username" required>
+                  <label for="password">Password:</label>
+                  <input type="password" id="password" name="password" required>
+                  <button type="submit" onclick="login()">登入</button>
+                </div>
+              </div>
 			<article>
 				<h2>About Me</h2>
 				<p>Add some information about yourself and your teaching philosophy here.</p>
