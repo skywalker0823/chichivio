@@ -6,6 +6,9 @@ https://violin.vivien.fun/
 
 On push to main branch, the website will be deployed to GCP cloud run.
 
+<img width="1139" alt="截圖 2023-02-22 下午3 07 15" src="https://user-images.githubusercontent.com/56625237/220548044-e5b6db60-7411-4fff-84d4-f152bdf2eba6.png">
+
+
 ### Cloud Build
 When a push is made to the main branch, the Cloud Build will be triggered. The Cloud Build will build and push the image to Artifact Registry. Then, will deploy the website to Cloud Run.
 
