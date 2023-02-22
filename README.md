@@ -1,7 +1,7 @@
 # Personal website with CICD
 ## Introduction
 A static website, and CICD with love.
-推版到部署，一鍵完成。
+推版到部署+快取清理，一鍵完成。
 https://violin.vivien.fun/
 
 On push to main branch, the website will be deployed to GCP cloud run.
@@ -18,9 +18,11 @@ The CloudFlare will cache the website and provide CDN service.
 ### Cloud Functions
 When new content is pushed to the main branch and deployed to Cloud Run, the Cloud Functions will automatically triggered cloudFlare to purge the cache.
 
+### Pub/Sub(working)
+
 ### Google Storage(working)
 
-### Cloud SQL(working)
+### Cloud SQL/Firestore(working)
 
 
 ## How to use
