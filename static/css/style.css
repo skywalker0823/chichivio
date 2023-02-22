@@ -33,8 +33,9 @@ main {
 }
 section {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    
 }
 article {
     background-color: #FFF;
@@ -42,14 +43,14 @@ article {
     box-shadow: 0 0 10px #DDD;
     margin: 10px;
     padding: 20px;
-    width: calc(50% - 20px);
+    width: calc(65% - 20px);
 }
 @media screen and (max-width: 768px) {
     article {
-        width: 100%;
+        width: 90%;
     }
     .login-container {
-        width: 100%;
+        width: 90%;
     }
 }
 footer {
@@ -59,11 +60,18 @@ footer {
     text-align: center;
 }
 
-.login-container {
+.login_container {
     background-color: #FFF;
     border: 1px solid #DDD;
     box-shadow: 0 0 10px #DDD;
     margin: 10px;
     padding: 20px;
-    width: calc(50% - 20px);
+    width: calc(65% - 20px);
+}
+
+.login_message {
+    color: #F00;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: none;
 }

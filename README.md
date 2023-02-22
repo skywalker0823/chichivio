@@ -15,6 +15,9 @@ The Cloud Run will pull the image from Artifact Registry and deploy the fresh we
 ### CloudFlare
 The CloudFlare will cache the website and provide CDN service.
 
+### Cloud Functions(working)
+When new content is pushed to the main branch and deployed to Cloud Run, the CloudFlare will automatically purge the cache.
+
 ### Google Storage(working)
 
 ### Cloud SQL(working)
@@ -25,5 +28,5 @@ The CloudFlare will cache the website and provide CDN service.
 * python3 -m venv venv(only need to do once, if you have already created a virtual environment, you can skip this step)
 * source venv/bin/activate
 * pip install -r requirements.txt
-* python3 app.py
+* python3 run.py
 * open 127.0.0.1:5000
