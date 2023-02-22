@@ -15,5 +15,3 @@ steps:
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['functions', 'call', 'autu-cf-purge', '--data', '{"url": "https://us-west1-project-0-369106.cloudfunctions.net/autu-cf-purge"}']
 
-
-    
