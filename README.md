@@ -15,8 +15,8 @@ The Cloud Run will pull the image from Artifact Registry and deploy the fresh we
 ### CloudFlare
 The CloudFlare will cache the website and provide CDN service.
 
-### Cloud Functions(working)
-When new content is pushed to the main branch and deployed to Cloud Run, the CloudFlare will automatically purge the cache.
+### Cloud Functions
+When new content is pushed to the main branch and deployed to Cloud Run, the Cloud Functions will automatically triggered cloudFlare to purge the cache.
 
 ### Google Storage(working)
 
