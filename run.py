@@ -20,3 +20,4 @@ if __name__ == '__main__':
 # docker image build -t chi_vio .
 # docker run -dp5000:5000 --name chi_vio_container chi_vio
 # open 127.0.0.1:5000
+
