@@ -35,6 +35,7 @@ def login():
 # DELETE
 @login_api.route('/', methods=['DELETE'])
 def logout():
+    print("user logout!")
     response = jsonify({'message': 'logout','status': '0'})
     response.set_cookie('access_token_cookie', '', expires=0)
     return response
