@@ -74,3 +74,22 @@ login_display_control = (login_status) => {
         document.getElementById('login_message').style.display = 'none';
     }
 }
+
+
+
+
+db_test = async() => {
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    const response = await fetch('/api/other/', options)
+    const result = await response.json();
+    if(result.status == "0"){
+        console.log("db_test_ok");
+        return;
+    }
+    console.log("db_test_error");
+}
