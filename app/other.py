@@ -14,10 +14,9 @@ client = MongoClient(os.getenv('DB_CONNECTION_DATA'))
 @jwt_required()
 def get_jwt():
     username = get_jwt_identity()
-    collection = client["chi_vio_db"]
     try:
         query = {"username": username}
-        result = collection["users"].find_one(query)
+        result = client["chi_vio_db"]["users"].find_one(query)
         print(result)
         if result:
             return jsonify({'message': 'get_jwt','status': '0','username': username})
@@ -26,5 +25,6 @@ def get_jwt():
     except Exception as e:
         print(e)
         return jsonify({'message': 'db_test','status': '1'})
+
 
 

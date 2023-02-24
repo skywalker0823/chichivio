@@ -21,11 +21,14 @@ The CloudFlare will cache the website and provide CDN service.
 ### Cloud Functions
 When new content is pushed to the main branch and deployed to Cloud Run, the Cloud Functions will automatically triggered cloudFlare to purge the cache.
 
+### Database-MongoDB Atlas
+The database is hosted on MongoDB Atlas, used to store the comments of the website.
+
 ### Pub/Sub(working)
 
 ### Google Storage(working)
 
-### Cloud SQL/Firestore(working)
+
 
 
 ## How to use

@@ -21,40 +21,30 @@ def check_login():
     else:
         return jsonify({'message': 'check_login','status': '1'})
 
-
 # POST
 @login_api.route('/', methods=['POST'])
 def login():
     print(request.json,"login hit!")
     username = request.json['username']
     password = request.json['password']
-    if username == "321" and password == "321":
-        response = jsonify({'message': 'login','status': "0"})
-        access_token = create_access_token(identity=username)
-        set_access_cookies(response, access_token)
-        return response
+    # if username == "321" and password == "321":
+    #     response = jsonify({'message': 'login','status': "0"})
+    #     access_token = create_access_token(identity=username)
+    #     set_access_cookies(response, access_token)
+    #     return response
     try:
-        quert = {"username": username}
-        result = client["chi_vio_db"]["users"].find_one(quert)
-        if result:
-            if password == result["password"]:
-                response = jsonify({'message': 'login','status': "0"})
-                access_token = create_access_token(identity=username)
-                set_access_cookies(response, access_token)
-                return response
+        query = {"username": username}
+        result = client["chi_vio_db"]["users"].find_one(query)
+        if result and result['password'] == password:
+            response = jsonify({'message': 'login','status': "0"})
+            access_token = create_access_token(identity=username)
+            set_access_cookies(response, access_token)
+            return response
         else:
             return jsonify({'message': 'login','status': '1'})
     except Exception as e:
         print(e)
         return jsonify({'message': 'db_test','status': '1'})
-    # if username == '123' and password == '123':
-    #     response = jsonify({'message': 'login','status': "0"})
-    #     access_token = create_access_token(identity=username)
-    #     set_access_cookies(response, access_token)
-    #     return response
-    # else:
-    #     return jsonify({'message': 'login','status': '1'})
-
 
 # DELETE
 @login_api.route('/', methods=['DELETE'])
