@@ -1,19 +1,30 @@
 from flask import Blueprint,jsonify, request
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
+from pymongo import MongoClient
+import os,dotenv
+
+dotenv.load_dotenv()
 
 other_api = Blueprint('other', __name__, url_prefix='/api/other')
 
+client = MongoClient(os.getenv('DB_CONNECTION_DATA'))
+
 # GET
 @other_api.route('/', methods=['GET'])
+@jwt_required()
 def get_jwt():
-    print("db_test hit!")
-    # # request to firestore
-    # db = firestore.Client()
-    # doc_ref = db.collection(u'users').document(u'alice')
-    # doc = doc_ref.get()
-    # if doc.exists:
-    #     print(u'Document data: {}'.format(doc.to_dict()))
-    # else:
-    #     print(u'No such document!')
-    return jsonify({'message': 'db_test_ok','status': '0'})
+    username = get_jwt_identity()
+    collection = client["chi_vio_db"]
+    try:
+        query = {"username": username}
+        result = collection["users"].find_one(query)
+        print(result)
+        if result:
+            return jsonify({'message': 'get_jwt','status': '0','username': username})
+        else:
+            return jsonify({'message': 'get_jwt','status': '1'})
+    except Exception as e:
+        print(e)
+        return jsonify({'message': 'db_test','status': '1'})
+
 

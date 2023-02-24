@@ -1,7 +1,9 @@
 // console.log when DOM ready
+let login_status = {ok: false};
+
 document.addEventListener('DOMContentLoaded', async() => {
     console.log('DOM ready');
-    let login_status = await auto_login_status_check();
+    login_status = await auto_login_status_check();
     login_display_control(login_status);
 
 });
@@ -9,6 +11,10 @@ document.addEventListener('DOMContentLoaded', async() => {
 login = async() => {
     let username = document.getElementById('username').value;
     let password = document.getElementById('password').value;
+    if(username == "" || password == ""){
+        console.log("log_in_error, empty username or password");
+        return;
+    }
     const options = {
         method: 'POST',
         headers: {
@@ -19,8 +25,9 @@ login = async() => {
     const response = await fetch('/api/login/', options)
     const result = await response.json();
     if(result.status == "0"){
+        login_status = {ok: true,username: username};
         console.log("log_in_ok");
-        login_display_control({ok: true,username: username});
+        login_display_control(login_status);
         return;
     }
     console.log("log_in_error");
@@ -29,6 +36,11 @@ login = async() => {
 
 
 logout = async() => {
+    console.log(login_status);
+    if(login_status.ok == false){
+        console.log("log_out_error, not logged in");
+        return;
+    }
     const options = {
         method: 'DELETE',
         headers: {
@@ -39,7 +51,9 @@ logout = async() => {
     const result = await response.json();
     if(result.status == "0"){
         console.log("log_out_ok");
-        login_display_control({ok: false});
+        login_status = {ok: false};
+        console.log(login_status);
+        login_display_control(login_status);
         return;
     }
     console.log("log_out_error, not supposed to happen");
@@ -58,14 +72,17 @@ auto_login_status_check = async() => {
     const result = await response.json();
     if(result.status == "0"){
         console.log("You are already logged in");
+        login_status = {ok: true,username: result.username};
         return {ok: true,username: result.username}
     }
     console.log("You are not logged in");
-    return {error: result.error}
+    login_status = {ok: false};
+    console.log(login_status);
+    return login_status;
 }
 
 login_display_control = (login_status) => {
-    if(login_status.ok){
+    if(login_status.ok == true){
         document.getElementById('login_container').style.display = 'none';
         document.getElementById('login_message').style.display = 'block';
         document.getElementById('login_message').innerHTML = "Hello, " + login_status.username;
