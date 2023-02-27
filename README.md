@@ -38,3 +38,17 @@ The database is hosted on MongoDB Atlas, used to store the comments of the websi
 * pip install -r requirements.txt
 * python3 run.py
 * open 127.0.0.1:5000
+* Exit venv : deactivate
+
+### Docker mode on local
+* docker image build -t chi_vio . (Don't miss the ".")
+* docker run -dp5000:5000 --name chi_vio_container chi_vio
+* open 127.0.0.1:5000
+
+### Production mode for uWSGI(uwsgi)(still configuring)
+* pip install uwsgi
+* pip freeze > requirements.txt
+* (uwsgi --ini uwsgi.ini) for local test
+* docker image build -t chi_vio Dockerfile.prod
+* docker run -dp5000:5000 --name chi_vio_container chi_vio
+
