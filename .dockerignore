@@ -1,3 +1,5 @@
 # Ignore by docker
 README.md
 .env
+venv
+__pycache__/

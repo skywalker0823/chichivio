@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', async() => {
     console.log('DOM ready');
     login_status = await auto_login_status_check();
     login_display_control(login_status);
-
 });
 
 login = async() => {
@@ -82,31 +81,36 @@ auto_login_status_check = async() => {
 }
 
 login_display_control = (login_status) => {
+    let login_container = document.getElementById('login_container');
+    let login_message = document.getElementById('login_message');
+    let logout_btn = document.getElementById('logout_btn');
     if(login_status.ok == true){
-        document.getElementById('login_container').style.display = 'none';
-        document.getElementById('login_message').style.display = 'block';
-        document.getElementById('login_message').innerHTML = "Hello, " + login_status.username;
+        login_container.style.display = 'none';
+        login_message.style.display = 'block';
+        login_message.innerHTML = "Hello, " + login_status.username;
+        logout_btn.style.display = 'block';
     }else{
-        document.getElementById('login_container').style.display = 'block';
-        document.getElementById('login_message').style.display = 'none';
+        login_container.style.display = 'block';
+        login_message.style.display = 'none';
+        logout_btn.style.display = 'none';
     }
 }
 
+//Front-end button Authentication
 
 
-
-db_test = async() => {
-    const options = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
-    const response = await fetch('/api/other/', options)
-    const result = await response.json();
-    if(result.status == "0"){
-        console.log("db_test_ok");
-        return;
-    }
-    console.log("db_test_error");
-}
+// db_test = async() => {
+//     const options = {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     };
+//     const response = await fetch('/api/other/', options)
+//     const result = await response.json();
+//     if(result.status == "0"){
+//         console.log("db_test_ok");
+//         return;
+//     }
+//     console.log("db_test_error");
+// }

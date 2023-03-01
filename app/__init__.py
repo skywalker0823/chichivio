@@ -51,6 +51,11 @@ def create_app():
     def member():
         return render_template('member.html')
 
+    @app.route('/board', methods=['GET'])
+    def board():
+        return render_template('board.html')
+
+
     @jwt.unauthorized_loader
     def unauthorized_response(callback):
         return jsonify({"msg": "Not authorized"}), 401

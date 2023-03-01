@@ -13,22 +13,22 @@
 		<h1>ChiChi violin</h1>
 	</header>
 	<nav>
-		<a href="#">Home</a>
-		<a href="#">Lessons</a>
-		<a href="#">Pricing</a>
-		<a href="#">Contact</a>
-		<a href="#" onclick="db_test()">DB test</a>
-        <a href="#" onclick="logout()">Logout</a>
+		<a href="#" id="lessons_btn">Lessons</a>
+		<a href="#" id="pricing_btn">Pricing</a>
+		<a href="#" id="contact_btn">Contact</a>
+		<a href="/board" id="board_btn">Board</a>
+		<a href="#" id="chat_btn">Chat</a>
+        <a href="#" id="logout_btn" class="logout_btn" onclick="logout()">Logout</a>
 	</nav>
 	<main>
 		<section>
             <div class="login_container" id="login_container">
-                <div>
+                <div class="inner_login_container">
                   <label for="username">Username:</label>
-                  <input type="text" id="username" name="username" required>
+                  <input class="username_bar" type="text" id="username" name="username" required>
                   <label for="password">Password:</label>
-                  <input type="password" id="password" name="password" required>
-                  <button type="submit" onclick="login()">登入</button>
+                  <input class="password_bar" type="password" id="password" name="password" required>
+                  <button class="login_btn" type="submit" onclick="login()">登入</button>
                 </div>
               </div>
               <div class="login_message" id="login_message">Welcome </div>
@@ -51,7 +51,7 @@
 		</section>
 	</main>
 	<footer>
-		<p>&copy; 2023 Chichivio. All rights reserved.v1.4:mongo_beta</p>
+		<p>&copy; 2023 Chichivio. All rights reserved.v1.42</p>
 	</footer>
     <script src="/js/index.js"></script>
 
