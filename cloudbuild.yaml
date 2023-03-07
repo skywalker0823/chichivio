@@ -15,4 +15,7 @@ steps:
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['functions', 'call', 'autu-cf-purge', '--data', '{"url": "https://us-west1-${PROJECT_ID}.cloudfunctions.net/autu-cf-purge"}','--region', 'us-west1']
 
-
+  # Step 5: Test environment echo
+  - name: ubuntu
+    args: ['echo', '${LOCATION}']
+    args: ['echo', '${_OTHER_VAR}']
