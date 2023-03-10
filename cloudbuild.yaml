@@ -17,5 +17,4 @@ steps:
 
   # Step 5: Test environment echo
   - name: ubuntu
-    args: ['echo', '${LOCATION}']
     args: ['echo', '${_OTHER_VAR}']
