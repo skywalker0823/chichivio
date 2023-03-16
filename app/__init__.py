@@ -29,10 +29,12 @@ def create_app():
     from app.login import login_api
     from app.other import other_api
     from app.member import member_api
+    from app.board import board_api
 
     app.register_blueprint(login_api)
     app.register_blueprint(other_api)
     app.register_blueprint(member_api)
+    app.register_blueprint(board_api)
 
     @app.route('/', methods=['GET'])
     def index():
@@ -52,6 +54,7 @@ def create_app():
         return render_template('member.html')
 
     @app.route('/board', methods=['GET'])
+    @jwt_required()
     def board():
         return render_template('board.html')
 
