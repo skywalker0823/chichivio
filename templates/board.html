@@ -11,19 +11,26 @@
     <header>
         <h1>Message Board</h1>
     </header>
+    <nav>
+        <a href="../">Home</a>
+		<a href="#" id="lessons_btn">Lessons</a>
+		<a href="#" id="pricing_btn">Pricing</a>
+		<a href="#" id="contact_btn">Contact</a>
+		<a href="#" id="chat_btn">Chat</a>
+	</nav>
     <section>
         <div class="message">
-            <input type="text" class="message-title" placeholder="在此輸入標題...">
-            <input type="text" class="message-text" placeholder="在此輸入內容...">
-            <button class="message-submit">送出</button>
+            <input type="text" class="message-title" id="message-title" placeholder="在此輸入標題...">
+            <input type="text" class="message-text" id="message-text" placeholder="在此輸入內容...">
+            <button class="message-submit" onclick="postMessage()">送出</button>
         </div>
 
         <div id="message-board" class="message-board"></div>
 
-        <button id="load-more" class="load-more">載入更多留言</button>
-
 
     </section>
     <script src="/js/board.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+
 </body>
 </html>

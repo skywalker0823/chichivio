@@ -23,6 +23,7 @@ def create_app():
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
 
     jwt = JWTManager(app)
+
     
     CORS(app)
 
@@ -35,6 +36,7 @@ def create_app():
     app.register_blueprint(other_api)
     app.register_blueprint(member_api)
     app.register_blueprint(board_api)
+
 
     @app.route('/', methods=['GET'])
     def index():
