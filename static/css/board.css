@@ -23,6 +23,10 @@ nav {
     padding: 10px;
 }
 
+nav a {
+    color: #333;
+    text-decoration: none;
+}
 
 .message {
     background-color: #f8f8f8;

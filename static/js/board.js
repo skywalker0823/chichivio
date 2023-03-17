@@ -58,9 +58,11 @@ postMessage = async() => {
     const result = await response.json();
     if(result.status == "0"){
         console.log("post_message_ok");
-        const message = { title: title, text: text };
+        const message = { title: title, text: text , time: time};
         const messageElement = createMessageElement(message);
         messageBoard.insertBefore(messageElement, messageBoard.firstChild);
+        document.getElementById('message-title').value = '';
+        document.getElementById('message-text').value = '';
         return;
     }
     console.log("post_message_error");
