@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>隨機聊天室</title>
+	<link rel="stylesheet" type="text/css" href="/css/chat.css">
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<h1>隨機聊天室</h1>
+			<p>請輸入您的名稱</p>
+			<input type="text" id="name-input">
+			<button id="join-button">加入聊天</button>
+		</div>
+		<div class="chatroom hidden">
+			<div id="chatlog"></div>
+			<input type="text" id="message-input" placeholder="請輸入訊息">
+			<button id="send-button">發送</button>
+			<button id="leave-button">離開聊天室</button>
+		</div>
+	</div>
+
+	<script src="/js/chat.js"></script>
+</body>
+</html>

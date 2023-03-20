@@ -1,13 +1,13 @@
 # static website, flask app, personal website, huichi
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_cors import CORS
+from flask_socketio import SocketIO
 from flask_jwt_extended import JWTManager, jwt_required, current_user, get_jwt_identity, create_access_token, set_access_cookies
 from datetime import datetime
 from datetime import timedelta
 import secrets
 
-
-
+socketio = SocketIO()
 
 def create_app():
     # 建立Flask物件, 並設定靜態檔案與模板檔案的路徑
@@ -60,9 +60,21 @@ def create_app():
     def board():
         return render_template('board.html')
 
+    # 個人頁面
+    @app.route('/personal/<id>', methods=['GET'])
+    @jwt_required()
+    def board_detail(board_id):
+        return render_template('board_detail.html')
+
+    @app.route('/chat', methods=['GET'])
+    def chat():
+        return render_template('chat.html')
+
 
     @jwt.unauthorized_loader
     def unauthorized_response(callback):
+        # redirect to homepage
+        # return redirect(url_for('index'))
         return jsonify({"msg": "Not authorized"}), 401
     
     return app

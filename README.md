@@ -1,7 +1,7 @@
 # Personal website with CICD
 ## Introduction
 A static website, and CICD with love.
-推版到部署+快取清理，一鍵完成。
+From publishing to deployment and cache clearing, all done with one click.
 https://violin.vivien.fun/
 
 On push to main branch, the website will be deployed to GCP cloud run.
@@ -22,7 +22,7 @@ The CloudFlare will cache the website and provide CDN service.
 When new content is pushed to the main branch and deployed to Cloud Run, the Cloud Functions will automatically triggered cloudFlare to purge the cache.
 
 ### Database-MongoDB Atlas
-The database is hosted on MongoDB Atlas, used to store the comments of the website.
+The database is hosted on MongoDB Atlas.
 
 ### Pub/Sub(working)
 
