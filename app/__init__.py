@@ -24,7 +24,6 @@ def create_app():
 
     jwt = JWTManager(app)
 
-    
     CORS(app)
 
     from app.login import login_api

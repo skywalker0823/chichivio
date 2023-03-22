@@ -8,9 +8,8 @@ dotenv.load_dotenv()
 board_api = Blueprint('board', __name__, url_prefix='/api/board')
 
 client = MongoClient(os.getenv('DB_CONNECTION_DATA'))
+
 messages_db = client["chi_vio_db"]["messages"]
-
-
 
 @board_api.route('/', methods=['GET'])
 @jwt_required()
