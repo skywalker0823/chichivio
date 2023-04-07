@@ -1,12 +1,12 @@
 body {
-    background-color: #F7F7F7;
+    background-color: #EEE2D7;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 header {
-    background-color: #E5E5E5;
-    color: #333;
+    background-color: #D3C6B6;
+    color: #493F30;
     padding: 20px;
     text-align: center;
 }
@@ -14,9 +14,9 @@ h1 {
     margin: 0;
 }
 nav {
-    background-color: #FFF;
-    border-bottom: 1px solid #DDD;
-    color: #333;
+    background-color: #F7F0E4;
+    border-bottom: 1px solid #C7B299;
+    color: #493F30;
     display: flex;
     justify-content: space-around;
     padding: 10px;
@@ -27,7 +27,7 @@ nav {
 }
 
 nav a {
-    color: #333;
+    color: #493F30;
     text-decoration: none;
 }
 nav a:hover {
@@ -43,9 +43,9 @@ section {
     
 }
 article {
-    background-color: #FFF;
-    border: 1px solid #DDD;
-    box-shadow: 0 0 10px #DDD;
+    background-color: #F7F0E4;
+    border: 1px solid #C7B299;
+    box-shadow: 0 0 10px #C7B299;
     margin: 10px;
     padding: 20px;
     width: calc(65% - 20px);
@@ -57,16 +57,16 @@ article {
 
 }
 footer {
-    background-color: #E5E5E5;
-    color: #333;
+    background-color: #D3C6B6;
+    color: #493F30;
     padding: 10px;
     text-align: center;
 }
 
 .login_container {
-    background-color: #FFF;
-    border: 1px solid #DDD;
-    box-shadow: 0 0 10px #DDD;
+    background-color: #F7F0E4;
+    border: 1px solid #C7B299;
+    box-shadow: 0 0 10px #C7B299;
     margin: 10px;
     padding: 20px;
     width: calc(65% - 20px);
@@ -81,7 +81,8 @@ footer {
 .username_bar {
     margin-bottom: 10px;
     border: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #493F30;
+    background-color: #F7F0E4;
 }
 
 .username_bar:focus {
@@ -91,27 +92,36 @@ footer {
 .password_bar {
     margin-bottom: 10px;
     border: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #493F30;
+    background-color: #F7F0E4
 }
 
 .password_bar:focus {
     outline: none;
 }
 
+
+.btn_box{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 .login_btn {
     padding: 5px 32px;
-    border: #000 1px solid;
+    border: #493F30 1px solid;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    background-color: #FFF;
+    background-color: #F7F0E4;
+    color: #493F30;
 }
 
 .login_message {
-    color: #F00;
+    color: #C62D42;
     font-weight: bold;
     margin-bottom: 10px;
     display: none;

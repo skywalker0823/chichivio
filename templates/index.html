@@ -28,7 +28,10 @@
                   <input class="username_bar" type="text" id="username" name="username" required>
                   <label for="password">Password:</label>
                   <input class="password_bar" type="password" id="password" name="password" required>
-                  <button class="login_btn" type="submit" onclick="login()">登入</button>
+				  <div class="btn_box">
+					<button class="login_btn" onclick="login()">Log in</button>
+				  	<button class="login_btn" onclick="register()">Sign up</button>
+				  </div>
                 </div>
               </div>
               <div class="login_message" id="login_message">Welcome </div>
@@ -51,7 +54,7 @@
 		</section>
 	</main>
 	<footer>
-		<p>&copy; 2023 Chichivio. All rights reserved.v1.7</p>
+		<p>&copy; 2023 Chichivio. All rights reserved.v0.5</p>
 	</footer>
     <script src="/js/index.js"></script>
 </body>

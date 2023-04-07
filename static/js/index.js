@@ -12,6 +12,7 @@ login = async() => {
     let password = document.getElementById('password').value;
     if(username == "" || password == ""){
         console.log("log_in_error, empty username or password");
+
         return;
     }
     const options = {
