@@ -24,6 +24,9 @@ When new content is pushed to the main branch and deployed to Cloud Run, the Clo
 ### Database-MongoDB Atlas
 The database is hosted on MongoDB Atlas, used to store the comments of the website.
 
+### Secret Manager
+The secret manager is used to store the token of the cloudFlare.
+
 ### Pub/Sub(working)
 
 ### Google Storage(working)

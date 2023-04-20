@@ -97,6 +97,9 @@ login_display_control = (login_status) => {
     }
 }
 
+register = () => {
+    console.log("register");
+}
 //Front-end button Authentication
 
 
