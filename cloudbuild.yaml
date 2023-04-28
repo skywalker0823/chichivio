@@ -9,7 +9,7 @@ steps:
 
   # Step 3: Deploy the Docker image to Cloud Run, max 1 instance
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['run', 'deploy', 'chichivio', '--image', 'us-west1-docker.pkg.dev/${PROJECT_ID}/chichivio/web:latest', '--platform', 'managed', '--region', 'us-west1', '--allow-unauthenticated', '--max-instances', '1', '--memory', '128Mi', '--cpu', '1', --port, '5000', '--min-instances', '1']
+    args: ['run', 'deploy', 'chichivio', '--image', 'us-west1-docker.pkg.dev/${PROJECT_ID}/chichivio/web:latest', '--platform', 'managed', '--region', 'us-west1', '--allow-unauthenticated', '--max-instances', '1', '--memory', '128Mi', '--cpu', '1', --port, '5000', '--min-instances', '0']
 
   # Step 4: Trigger cloud function when cloud run is deployed
   - name: 'gcr.io/cloud-builders/gcloud'
