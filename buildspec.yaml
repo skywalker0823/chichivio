@@ -1,19 +1,19 @@
 version: 0.2
 phases:
     pre_build:
+    # Success
         commands:
             - echo Login to AWS ECR
-            # echo default region
-            - echo $AWS_DEFAULT_REGION
-            # Get AWS_ACCOUNT_ID
             - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
             - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
     build:
+    # Testing
         commands:
             - echo Build start
             - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG .
             - docker tag $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
     post_build:
+    # Testing
         commands:
             - echo Build completed on `date`
             - echo Pushing the Docker images...
