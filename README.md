@@ -31,7 +31,7 @@ The secret manager is used to store the token of the cloudFlare.
 The database is hosted on PlanetScale, used to store the comments or members of the website.
 
 ### Vercel(considering)
-The website is hosted on Vercel, used to store the comments or members of the website.
+The website is hosted on Vercel.
 
 ### Google Storage(working)
 
