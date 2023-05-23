@@ -27,7 +27,11 @@ The database is hosted on MongoDB Atlas, used to store the comments of the websi
 ### Secret Manager
 The secret manager is used to store the token of the cloudFlare.
 
-### Pub/Sub(working)
+### PlanetScale(considering)
+The database is hosted on PlanetScale, used to store the comments or members of the website.
+
+### Vercel(considering)
+The website is hosted on Vercel, used to store the comments or members of the website.
 
 ### Google Storage(working)
 

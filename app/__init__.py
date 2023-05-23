@@ -6,6 +6,7 @@ from datetime import datetime
 from datetime import timedelta
 from pathlib import Path
 import secrets
+from database import planet_scale
 
 
 
@@ -74,5 +75,9 @@ def create_app():
         response = make_response(jsonify({'msg': 'Missing Authorization Header'}), 401)
         return response
         # return jsonify({"msg": "Not authorized"}), 401
-    
+
+    if planet_scale.DB.is_connected:
+        print(">>>>>>Connected to MySQL database<<<<<<")
+    else:
+        print("!!!!!!Connected to MySQL database failed!!!!!!")
     return app
