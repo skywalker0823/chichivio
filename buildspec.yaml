@@ -13,13 +13,11 @@ phases:
     # Testing
         commands:
             - echo Build start
-            - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest .
+            - docker build -t $IMAGE_REPO_NAME .
+            - docker tag $IMAGE_REPO_NAME:latest AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
     post_build:
     # Testing
         commands:
             - echo Build completed on `date`
             - echo Pushing the Docker images...
             - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
-artifacts:
-    files:
-        - '**/*'
