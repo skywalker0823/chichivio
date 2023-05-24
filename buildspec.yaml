@@ -8,11 +8,13 @@ phases:
             - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
             - sudo apt-get install -y libmysqlclient-dev mysql-client
             - echo $AWS_ACCOUNT_ID $AWS_DEFAULT_REGION $IMAGE_REPO_NAME
+
     build:
     # Testing
         commands:
             - echo Build start
             - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest .
+            
     post_build:
     # Testing
         commands:
