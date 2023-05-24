@@ -9,7 +9,6 @@ phases:
             # - sudo apt-get -y update
             # - sudo apt-get install -y libmysqlclient-dev
             - echo $AWS_ACCOUNT_ID $AWS_DEFAULT_REGION $IMAGE_REPO_NAME
-            
     build:
     # Testing
         commands:
