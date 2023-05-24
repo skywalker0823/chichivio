@@ -1,4 +1,7 @@
 # Personal website with CICD
+
+* 2023/5 New Update~ Now changing to AWS CICD system.
+
 ## Introduction
 A static website, and CICD with love.
 推版到部署+快取清理，一鍵完成。
