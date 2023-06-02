@@ -6,12 +6,9 @@ from database.planet_scale import DB
 
 dotenv.load_dotenv()
 
-
 database = DB()
-login_api = Blueprint('login', __name__, url_prefix='/api/login')
 
-# Put this environment variable in cloud run environment setting.
-# client = MongoClient(os.getenv('DB_CONNECTION_DATA'))
+login_api = Blueprint('login', __name__, url_prefix='/api/login')
 
 # RESTful API
 
