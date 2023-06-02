@@ -97,24 +97,27 @@ login_display_control = (login_status) => {
     }
 }
 
-register = () => {
+register = async() => {
     console.log("register");
+    let username = document.getElementById('username').value;
+    let password = document.getElementById('password').value;
+    if(username == "" || password == ""){
+        console.log("register_error, empty username or password");
+        return;
+    }
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({username: username, password: password})
+    };
+    const response = await fetch('/api/signup/', options)
+    const result = await response.json();
+    if(result.status == "0"){
+        console.log("register_ok");
+        return;
+    }
+    console.log("register_error");
+    
 }
-//Front-end button Authentication
-
-
-// db_test = async() => {
-//     const options = {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     };
-//     const response = await fetch('/api/other/', options)
-//     const result = await response.json();
-//     if(result.status == "0"){
-//         console.log("db_test_ok");
-//         return;
-//     }
-//     console.log("db_test_error");
-// }

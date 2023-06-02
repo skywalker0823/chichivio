@@ -7,24 +7,24 @@ from database.planet_scale import DB
 dotenv.load_dotenv()
 
 database = DB()
-signup_api = Blueprint('signin_api', __name__, url_prefix='/api/signin')
+signup_api = Blueprint('signin_api', __name__, url_prefix='/api/signup')
 
 # client = MongoClient(os.getenv('DB_CONNECTION_DATA'))
 
 
 
 @signup_api.route('/', methods=['POST'])
-def signin():
-    print(request.json,"signin hit!")
+def signup():
+    print(request.json,"signup hit!")
     username = request.json['username']
     password = request.json['password']
     try:
-        result = DB.get_user(username)
+        result = database.get_user(username,password)
         if result:
-            return jsonify({'message': 'signin','status': '1'})
+            return jsonify({'message': 'signup','status': '1'})
         else:
             database.insert_user(username,password)
-            response = jsonify({'message': 'signin','status': "0"})
+            response = jsonify({'message': 'signup','status': "0"})
             access_token = create_access_token(identity=username)
             set_access_cookies(response, access_token)
             return response
