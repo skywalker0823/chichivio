@@ -1,14 +1,17 @@
 from flask import Blueprint,jsonify, request
 from flask_jwt_extended import jwt_required, create_access_token, set_access_cookies, get_jwt_identity, verify_jwt_in_request
-from pymongo import MongoClient
+# from pymongo import MongoClient
 import os,dotenv
+from database.planet_scale import DB
 
 dotenv.load_dotenv()
 
+
+database = DB()
 login_api = Blueprint('login', __name__, url_prefix='/api/login')
 
 # Put this environment variable in cloud run environment setting.
-client = MongoClient(os.getenv('DB_CONNECTION_DATA'))
+# client = MongoClient(os.getenv('DB_CONNECTION_DATA'))
 
 # RESTful API
 
@@ -28,11 +31,11 @@ def login():
     print(request.json,"login hit!")
     username = request.json['username']
     password = request.json['password']
-
+    print(username,password)
     try:
-        query = {"username": username}
-        result = client["chi_vio_db"]["users"].find_one(query)
-        if result and result['password'] == password:
+        result = database.get_user(username,password)
+        print(result)
+        if result:
             response = jsonify({'message': 'login','status': "0"})
             access_token = create_access_token(identity=username)
             set_access_cookies(response, access_token)

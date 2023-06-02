@@ -24,3 +24,20 @@ class DB:
             return True
         else:
             return False
+
+    def get_user(self, username,password):
+        try:
+            self.cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username,password))
+            result = self.cursor.fetchone()
+            return result
+        except Exception as e:
+            print("Exeception occured:{}".format(e))
+            return None
+
+    def insert_user(self, username, password):
+        try:
+            self.cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
+            return True
+        except Exception as e:
+            print("Exeception occured:{}".format(e))
+            return False
