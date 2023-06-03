@@ -16,3 +16,4 @@ class Mongo:
         query = {"username": username,"password": password}
         result = self.client["chi_vio_db"]["users"].insert_one(query)
         return result        
+        
