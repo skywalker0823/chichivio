@@ -1,21 +1,20 @@
 from dotenv import load_dotenv
 import os
 import MySQLdb
+import pymysql
 
 load_dotenv()
 
 class DB:
     def __init__(self) -> None:
-        self.connection = MySQLdb.connect(
-            host= os.getenv("HOST"),
-            user=os.getenv("USERNAME"),
-            passwd= os.getenv("PASSWORD"),
-            db= os.getenv("DATABASE"),
-            autocommit = True,
-            ssl_mode = "VERIFY_IDENTITY",
-            ssl      = {
-                "ca": "/etc/ssl/cert.pem"
-            }
+        self.connection = pymysql.connect(
+            host = os.getenv("HOST"),
+            user = os.getenv("USERNAME"),
+            password = os.getenv("PASSWORD"),
+            database = os.getenv("DATABASE"),
+            ssl_ca = "/etc/ssl/certs/ca-certificates.crt"
+            # Mac OS ssl_ca
+            # ssl_ca = "/etc/ssl/cert.pem"
         )
         self.cursor = self.connection.cursor()
     

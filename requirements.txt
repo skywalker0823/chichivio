@@ -37,12 +37,12 @@ msgpack==1.0.5
 mysqlclient==2.1.1
 oauthlib==3.2.2
 proto-plus==1.22.2
-protobuf==4.22.1
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.21
 PyJWT==2.6.0
 pymongo==4.3.3
+PyMySQL==1.0.3
 pyparsing==3.0.9
 python-dotenv==0.21.1
 python-engineio==4.4.0
