@@ -19,9 +19,6 @@ When a push is made to the main branch, the Cloud Build will be triggered. The C
 ### Cloud Run
 The Cloud Run will pull the image from Artifact Registry and deploy the fresh website.
 
-### CloudFlare
-The CloudFlare will cache the website and provide CDN service.
-
 ### Cloud Functions
 When new content is pushed to the main branch and deployed to Cloud Run, the Cloud Functions will automatically triggered cloudFlare to purge the cache.
 
@@ -37,6 +34,9 @@ The database is hosted on MongoDB Atlas, used to store the comments of the websi
 The database is hosted on PlanetScale, used to store the members info of the website.
 
 ## Static files storage
+
+### CloudFlare
+The CloudFlare will cache the website and provide CDN service.
 
 ### Google Storage(working)
 
