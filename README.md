@@ -1,6 +1,6 @@
 # Personal website with CICD
 
-* 2023/5 New Update~ Now changing to AWS CICD system.
+* Now using GCP CICD to deploy the website to Cloud Run.
 
 ## Introduction
 A static website, and CICD with love.
@@ -11,6 +11,7 @@ On push to main branch, the website will be deployed to GCP cloud run.
 
 <img width="1139" alt="截圖 2023-02-22 下午3 07 15" src="https://user-images.githubusercontent.com/56625237/220548044-e5b6db60-7411-4fff-84d4-f152bdf2eba6.png">
 
+## General Architecture
 
 ### Cloud Build
 When a push is made to the main branch, the Cloud Build will be triggered. The Cloud Build will build and push the image to Artifact Registry. Then, will deploy the website to Cloud Run.
@@ -24,17 +25,18 @@ The CloudFlare will cache the website and provide CDN service.
 ### Cloud Functions
 When new content is pushed to the main branch and deployed to Cloud Run, the Cloud Functions will automatically triggered cloudFlare to purge the cache.
 
+### Secret Manager
+The secret manager is used to store the token of the cloudFlare and other keys.
+
+## Database
+
 ### Database-MongoDB Atlas
 The database is hosted on MongoDB Atlas, used to store the comments of the website.
 
-### Secret Manager
-The secret manager is used to store the token of the cloudFlare.
+### Database2-PlanetScale
+The database is hosted on PlanetScale, used to store the members info of the website.
 
-### PlanetScale(considering)
-The database is hosted on PlanetScale, used to store the comments or members of the website.
-
-### Vercel(considering)
-The website is hosted on Vercel.
+## Static files storage
 
 ### Google Storage(working)
 
@@ -42,6 +44,8 @@ The website is hosted on Vercel.
 
 
 ## How to use
+Need to fill in the .env file with the information in the .env.example file.
+
 ### Development mode
 * python3 -m venv venv(only need to do once, if you have already created a virtual environment, you can skip this step)
 * source venv/bin/activate
@@ -52,7 +56,7 @@ The website is hosted on Vercel.
 
 ### Docker mode on local
 * docker image build -t chi_vio . (Don't miss the ".")
-* docker run -dp5000:5000 --name chi_vio_container chi_vio
+* docker run --env-file .env -dp5000:5000 --name chi_vio_container chi_vio
 * open 127.0.0.1:5000
 
 ### Production mode for uWSGI(uwsgi)(still configuring)
