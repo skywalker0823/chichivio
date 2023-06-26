@@ -121,3 +121,7 @@ register = async() => {
     console.log("register_error");
     
 }
+
+document.getElementById('signup_btn').addEventListener('click', () => {
+    alert("Not available yet")
+});

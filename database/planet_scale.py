@@ -7,14 +7,18 @@ load_dotenv()
 
 class DB:
     def __init__(self) -> None:
+        ssl_ca_paths = ["/etc/ssl/certs/ca-certificates.crt", "/etc/ssl/cert.pem"]
+        ssl_ca = None
+        for path in ssl_ca_paths:
+            if os.path.exists(path):
+                ssl_ca = path
+                break
         self.connection = pymysql.connect(
             host = os.getenv("HOST"),
             user = os.getenv("USERNAME"),
             password = os.getenv("PASSWORD"),
             database = os.getenv("DATABASE"),
-            ssl_ca = "/etc/ssl/certs/ca-certificates.crt"
-            # Mac OS ssl_ca
-            # ssl_ca = "/etc/ssl/cert.pem"
+            ssl_ca = ssl_ca
         )
         self.cursor = self.connection.cursor()
     
