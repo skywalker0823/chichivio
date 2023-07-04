@@ -29,3 +29,14 @@ if __name__ == '__main__':
 # Use -> waitress <- as a WSGI server, easy to use
 # pip install waitress
 # waitress-serve --port=5000 run:app
+
+
+# K8S test
+# kubectl apply -f deployment.yaml
+# kubectl get deployments
+# kubectl apply -f service.yaml
+# kubectl get svc
+
+# DELETE
+# kubectl delete -f deployment.yaml
+# kubectl delete -f service.yaml

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chichivio-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chichivio
+  template:
+    metadata:
+      labels:
+        app: chichivio
+    spec:
+      containers:
+        - name: chichivio
+          image: us-west1-docker.pkg.dev/project-0-369106/chichivio/web:latest
+          ports:
+            - containerPort: 5000

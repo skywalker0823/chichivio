@@ -12,8 +12,7 @@ On push to main branch, the website will be deployed to GCP cloud run.
 <img width="1139" alt="截圖 2023-02-22 下午3 07 15" src="https://user-images.githubusercontent.com/56625237/220548044-e5b6db60-7411-4fff-84d4-f152bdf2eba6.png">
 
 ## General Architecture
-
-### Cloud Build
+### Cloud Build/CodeBuild
 When a push is made to the main branch, the Cloud Build will be triggered. The Cloud Build will build and push the image to Artifact Registry. Then, will deploy the website to Cloud Run.
 
 ### Cloud Run
@@ -25,8 +24,7 @@ When new content is pushed to the main branch and deployed to Cloud Run, the Clo
 ### Secret Manager
 The secret manager is used to store the token of the cloudFlare and other keys.
 
-## Database
-
+## Databases
 ### Database-MongoDB Atlas
 The database is hosted on MongoDB Atlas, used to store the comments of the website.
 
