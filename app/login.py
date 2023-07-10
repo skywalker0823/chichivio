@@ -1,12 +1,13 @@
 from flask import Blueprint,jsonify, request
 from flask_jwt_extended import jwt_required, create_access_token, set_access_cookies, get_jwt_identity, verify_jwt_in_request
-# from pymongo import MongoClient
+from database.mongo import Mongo
 import os,dotenv
-from database.planet_scale import DB
+# from database.planet_scale import DB
 
 dotenv.load_dotenv()
 
-database = DB()
+database = Mongo()
+# database = DB()
 
 login_api = Blueprint('login', __name__, url_prefix='/api/login')
 
