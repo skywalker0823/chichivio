@@ -82,6 +82,6 @@ def create_app():
         # return jsonify({"msg": "Not authorized"}), 401
 
     print("MongoDB is connected" if mongo.Mongo().is_connected() else "MongoDB FAILED to connect")
-    print("PlanetScaleDB is connected" if planet_scale.DB().is_connected() else "PlanetScaleDB FAILED to connect")
+    # print("PlanetScaleDB is connected" if planet_scale.DB().is_connected() else "PlanetScaleDB FAILED to connect")
     
     return app
