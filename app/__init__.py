@@ -74,6 +74,11 @@ def create_app():
     def chat():
         return render_template('chat.html')
 
+    @app.route('/stock', methods=['GET'])
+    @jwt_required()
+    def stock():
+        return render_template('stock.html')
+
 
     @jwt.unauthorized_loader
     def unauthorized_response(callback):
