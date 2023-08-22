@@ -4,9 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stock.css">
     <title>股票資料站</title>
 </head>
 <body>
-    <div>hola</div>
+    <header>
+        <h1>股票資料站</h1>
+        <button onclick="history.back()">回首頁</button>
+    </header>
+    <main>
+        <section class="search-section">
+            <label for="input_stock">請輸入股票代號：</label>
+            <input id="input_stock" type="text" placeholder="輸入股票代號或名稱">
+            <button id="btn_stock">查詢</button>
+        </section>
+        <section class="info-section">
+            <div id="info_stock"></div>
+            <canvas id="stockChart"></canvas>
+        </section>
+    </main>
+    <script type="text/javascript" src="js/stock.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
 </body>
 </html>

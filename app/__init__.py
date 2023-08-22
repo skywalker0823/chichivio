@@ -39,12 +39,15 @@ def create_app():
     from app.member import member_api
     from app.board import board_api
     from app.signup import signup_api
+    from app.stock import stock_api
 
     app.register_blueprint(login_api)
     app.register_blueprint(other_api)
     app.register_blueprint(member_api)
     app.register_blueprint(board_api)
     app.register_blueprint(signup_api)
+    app.register_blueprint(stock_api)
+
 
 
     @app.route('/', methods=['GET'])
@@ -82,9 +85,15 @@ def create_app():
 
     @jwt.unauthorized_loader
     def unauthorized_response(callback):
+        print("trigger unauthorized_response")
         response = make_response(jsonify({'msg': 'Unauthorized'}), 401)
-        return response
-        # return jsonify({"msg": "Not authorized"}), 401
+        return render_template('index.html', response=response)
+    
+    @jwt.token_verification_failed_loader
+    def token_verification_failed_response(callback):
+        print("trigger token_verification_failed_response")
+        response = make_response(jsonify({'msg': 'Token verification failed'}), 401)
+        return render_template('index.html', response=response)
 
     print("MongoDB is connected" if mongo.Mongo().is_connected() else "MongoDB FAILED to connect")
     # print("PlanetScaleDB is connected" if planet_scale.DB().is_connected() else "PlanetScaleDB FAILED to connect")
