@@ -2,7 +2,7 @@ FROM --platform=linux/amd64 python:3.10-slim
 
 WORKDIR /app
 
-ADD . /app
+COPY . /app
 
 RUN pip install -r requirements.txt
 
