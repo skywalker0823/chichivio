@@ -17,6 +17,11 @@ if __name__ == '__main__':
 # docker run --env-file .env -dp5000:5000 --name chi_vio_container --cpus=1 --memory=512m chi_vio
 # open 127.0.0.1:5000
 
+# Start website with docker-compose
+# docker-compose -f docker-compose.yaml up -d --build(Development)
+# Open localhost on browser(sometimes need to wait for mysql and flask to start completely)
+# docker-compose down
+
 # Development mode
 # python3 -m venv venv
 # source venv/bin/activate
