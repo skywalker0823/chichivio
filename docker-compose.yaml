@@ -1,0 +1,60 @@
+version: '3'
+services:
+  # mysql:
+  #   env_file:
+  #     - .env
+  #   build:
+  #     context: database
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+  #     MYSQL_DATABASE: ${DB_DATABASE}
+  #   command: --init-file /docker-entrypoint-initdb.d/basic_data.sql
+  #   container_name: a_mysql
+  #   restart: on-failure:5
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost","-u${DB_USER}", "-p${DB_PASSWORD}"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 50s
+  #   volumes:
+  #     - ./database/data:/var/lib/mysql
+  flask:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # ports:
+    #   - "3000:3000"
+    # depends_on:
+    #   mysql:
+    #     condition: service_healthy
+      # redis:
+      #   condition: service_healthy
+    container_name: chi_vio_container
+    restart: always
+  nginx:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - flask
+    container_name: nginx_container
+    restart: always
+    volumes:
+      - /etc/ssl/pikxl.link:/etc/ssl/pikxl.link
+
+  # redis:
+  #     image: redis:latest
+  #     container_name: a_redis
+  #     restart: always
+  #     # ports:
+  #     #   - "6379:6379"
+  #     depends_on:
+  #       - flask
+  #     # volumes:
+  #     #   - ./redis/data:/data
+      
