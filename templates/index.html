@@ -6,19 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
 	<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-    <title>Chi Chi vio</title>
+    <title>Pikxl</title>
 </head>
 <body>
     <header>
-		<h1>ChiChi violin</h1>
+		<h1>Pikxl</h1>
 	</header>
 	<nav>
-		<a href="#" id="lessons_btn">課程</a>
-		<a href="#" id="pricing_btn">收費</a>
-		<a href="#" id="contact_btn">聯絡方式</a>
 		<a href="/board" id="board_btn">留言板</a>
 		<a href="/chat" id="chat_btn">聊天室</a>
 		<a href="/stock" id="about_btn">股票</a>
+		<a href="/apod" id="about_btn">APOD</a>
         <a href="#" id="logout_btn" class="logout_btn" onclick="logout()">Logout</a>
 	</nav>
 	<main>
@@ -26,36 +24,40 @@
             <div class="login_container" id="login_container">
                 <div class="inner_login_container">
                   <label for="username">Username:</label>
-                  <input class="username_bar" type="text" id="username" name="username" required>
+                  <input class="username_bar" type="text" id="username" name="username" value="123" required>
                   <label for="password">Password:</label>
-                  <input class="password_bar" type="password" id="password" name="password" required>
+                  <input class="password_bar" type="password" id="password" name="password" value="123" required>
 				  <div class="btn_box">
 					<button class="login_btn" onclick="login()">Log in</button>
-				  	<button class="login_btn" id="signup_btn" onclick="register()">Sign up</button>
+				  	<!-- <button class="login_btn" id="signup_btn" onclick="register()">Sign up</button> -->
 				  </div>
                 </div>
               </div>
               <div class="login_message" id="login_message">Welcome </div>
-			<article>
-				<h2>About Me</h2>
-				<p>Add some information about yourself and your teaching philosophy here.</p>
-			</article>
-			<article>
-				<h2>Lessons</h2>
-				<p>Add some information about your lessons, including the types of music you teach and what students can expect from your lessons.</p>
-			</article>
-			<article>
-				<h2>Pricing</h2>
-				<p>Add information about your pricing, including your rates and any packages or deals you offer.</p>
-			</article>
-			<article>
-				<h2>Contact</h2>
-				<p>Add a contact form or your contact information here.</p>
-			</article>
+
+
+			<div class="sections">
+				<article>
+					<h2>1</h2>
+				</article>
+				<article>
+					<h2>2</h2>
+				</article>
+				<article>
+					<h2>3</h2>
+					<p>A</p>
+				</article>
+				<article>
+					<h2>4</h2>
+					<p>B</p>
+				</article>
+			</div>
+
+
 		</section>
 	</main>
 	<footer>
-		<p>&copy; 2023 Chichivio. All rights reserved.v0.6</p>
+		<p>&copy; 2024 Pikxl. All rights reserved.v1.0</p>
 	</footer>
     <script src="/js/index.js"></script>
 </body>

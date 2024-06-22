@@ -51,6 +51,7 @@ nav a {
     line-height: 1.5;
     text-align: left;
     box-sizing: border-box;
+    background-color: #E5E5E5;
   }
   
   .message-submit {
