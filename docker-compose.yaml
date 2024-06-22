@@ -21,6 +21,8 @@ services:
   #   volumes:
   #     - ./database/data:/var/lib/mysql
   flask:
+    env_file:
+        - .env
     build:
       context: .
       dockerfile: Dockerfile
