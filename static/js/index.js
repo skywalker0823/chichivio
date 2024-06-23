@@ -12,7 +12,6 @@ login = async() => {
     let password = document.getElementById('password').value;
     if(username == "" || password == ""){
         console.log("log_in_error, empty username or password");
-
         return;
     }
     const options = {
@@ -33,7 +32,6 @@ login = async() => {
     console.log("log_in_error");
     login_display_control({ok: false});
 }
-
 
 logout = async() => {
     console.log(login_status);
@@ -58,8 +56,6 @@ logout = async() => {
     }
     console.log("log_out_error, not supposed to happen");
 }
-
-
 
 auto_login_status_check = async() => {
     const options = {

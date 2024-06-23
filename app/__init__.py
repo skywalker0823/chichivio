@@ -40,6 +40,7 @@ def create_app():
     from app.board import board_api
     from app.signup import signup_api
     from app.stock import stock_api
+    from app.apod import apod_api
 
     app.register_blueprint(login_api)
     app.register_blueprint(other_api)
@@ -47,7 +48,7 @@ def create_app():
     app.register_blueprint(board_api)
     app.register_blueprint(signup_api)
     app.register_blueprint(stock_api)
-
+    app.redirect_blueprint(apod_api)
 
 
     @app.route('/', methods=['GET'])
@@ -81,6 +82,11 @@ def create_app():
     @jwt_required()
     def stock():
         return render_template('stock.html')
+
+    @app.route('/apod', methods=['GET'])
+    @jwt_required()
+    def apod():
+        return render_template('apod.html')
 
 
     @jwt.unauthorized_loader
