@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', async() => {
     console.log('DOM ready');
     login_status = await auto_login_status_check();
     login_display_control(login_status);
+    // turn url to root
 });
 
 login = async() => {
@@ -90,6 +91,7 @@ login_display_control = (login_status) => {
         login_container.style.display = 'block';
         login_message.style.display = 'none';
         logout_btn.style.display = 'none';
+        window.location.href="/"
     }
 }
 
@@ -118,6 +120,6 @@ register = async() => {
     
 }
 
-document.getElementById('signup_btn').addEventListener('click', () => {
-    alert("Not available yet")
-});
+// document.getElementById('signup_btn').addEventListener('click', () => {
+//     alert("Not available yet")
+// });

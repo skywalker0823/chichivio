@@ -48,7 +48,7 @@ def create_app():
     app.register_blueprint(board_api)
     app.register_blueprint(signup_api)
     app.register_blueprint(stock_api)
-    app.redirect_blueprint(apod_api)
+    app.register_blueprint(apod_api)
 
 
     @app.route('/', methods=['GET'])
@@ -84,7 +84,6 @@ def create_app():
         return render_template('stock.html')
 
     @app.route('/apod', methods=['GET'])
-    @jwt_required()
     def apod():
         return render_template('apod.html')
 
@@ -93,7 +92,7 @@ def create_app():
     def unauthorized_response(callback):
         print("trigger unauthorized_response")
         response = make_response(jsonify({'msg': 'Unauthorized'}), 401)
-        return render_template('index.html', response=response)
+        return redirect('/')
     
     @jwt.token_verification_failed_loader
     def token_verification_failed_response(callback):

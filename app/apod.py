@@ -9,7 +9,6 @@ dotenv.load_dotenv()
 apod_api = Blueprint('apod', __name__, url_prefix='/api/apod')
 
 @apod_api.route('/', methods=['GET'])
-@jwt_required()
 def get_apod():
     print("get_apod hit!")
     return jsonify({'message': 'get_apod','status': '0'})
