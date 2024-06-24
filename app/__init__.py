@@ -6,6 +6,7 @@ from datetime import datetime
 from datetime import timedelta
 from pathlib import Path
 import secrets
+from dotenv import load_dotenv
 from database import planet_scale, mongo
 
 
@@ -21,14 +22,14 @@ def create_app():
     # cred = credentials.Certificate('../keys/firebase-adminsdk.json')
     # initialize_app(cred)
 
-    # 設定JWT的secret key
+    # 設定JWT的secret key,should change to environment for env
     app.config['JWT_SECRET_KEY'] = secrets.token_hex(16)
 
     # 將JWT存在cookies中
     app.config['JWT_TOKEN_LOCATION'] = ['cookies']
 
     # 設置JWT過期時間
-    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=15)
 
     jwt = JWTManager(app)
 
