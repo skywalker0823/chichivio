@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,9 +13,10 @@
 	<nav>
 		<p class="title">Pikxl</p>
 		<a href="/board" id="board_btn">留言板</a>
-		<a href="/chat" id="chat_btn">聊天室</a>
+		<a href="/chat" id="chat_btn"><img src="/images/talk.png"></a>
 		<a href="/stock" id="about_btn">股票</a>
-		<a href="/apod" id="about_btn">APOD</a>
+		<a href="/apod" id="about_btn"><img src="/images/earth.png"></a>
+		<a href="/crawler"><img src="/images/spider.png" style="width:16px;height:16px;"></a>
         <a href="#" id="logout_btn" class="logout_btn" onclick="logout()">Logout</a>
 	</nav>
 	<main>
@@ -33,14 +34,73 @@
                 </div>
               </div>
               <div class="login_message" id="login_message">Welcome </div>
-
+			  <div id="container">
+				<div class="main-content">
+				  <div class="search-bar">
+					<select id="input-field">
+					  <option value="" disabled>請選擇想要查詢的縣市名稱</option>
+					  <option value="宜蘭縣">宜蘭縣</option>
+					  <option value="花蓮縣">花蓮縣</option>
+					  <option value="臺東縣">臺東縣</option>
+					  <option value="澎湖縣">澎湖縣</option>
+					  <option value="金門縣">金門縣</option>
+					  <option value="連江縣">連江縣</option>
+					  <option value="臺北市" selected>臺北市</option>
+					  <option value="新北市">新北市</option>
+					  <option value="桃園市">桃園市</option>
+					  <option value="臺中市">臺中市</option>
+					  <option value="臺南市">臺南市</option>
+					  <option value="高雄市">高雄市</option>
+					  <option value="基隆市">基隆市</option>
+					  <option value="新竹縣">新竹縣</option>
+					  <option value="新竹市">新竹市</option>
+					  <option value="苗栗縣">苗栗縣</option>
+					  <option value="彰化縣">彰化縣</option>
+					  <option value="南投縣">南投縣</option>
+					  <option value="雲林縣">雲林縣</option>
+					  <option value="嘉義縣">嘉義縣</option>
+					  <option value="嘉義市">嘉義市</option>
+					  <option value="屏東縣">屏東縣</option>
+				  </select>
+				  </div>
+				  <div class="weather-data">
+					<div class="data-line1">
+					  <div class="place-date">
+						<div id="place"></div>
+						<div class="date">
+						  <div id="month"></div>
+						  &nbsp;
+						  <div id="day"></div>
+						</div>
+					  </div>
+					  <div class="arrows">
+						<div id="left" class="disabled">&#60;</div>
+						<div id="right">&#62;</div>
+					  </div>
+					</div>
+					<div>
+					  <span id="temp-low" class="temp"></span>
+					   ℃ <span class="dash"> - </span>
+					   <span id="temp-high" class="temp"></span>
+					   ℃
+					</div>
+					<div class="weather-status">
+					  <img id="weather-icon">
+					  <div id="status"></div>
+					</div>
+					<div id="rain-status">降雨機率：<span id="rain-status-value"></span>%</div>
+					<div id="comfort"></div>
+				  </div>
+				</div>
+			  </div>
 
 			<div class="sections">
 				<article>
-					<h2>1</h2>
+					<h2>A</h2>
 				</article>
 				<article>
-					<h2>2</h2>
+					<h2>1</h2>
+                    <p>A</p>
 				</article>
 				<article>
 					<h2>3</h2>
@@ -59,6 +119,7 @@
 		<p>&copy; 2024 Pikxl. All rights reserved.v1.0</p>
 	</footer>
     <script src="/js/index.js"></script>
+	<script src="/js/weather_fetch.js"></script>
 </div>
 </body>
 </html>

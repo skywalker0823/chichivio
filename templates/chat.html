@@ -1,15 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="/css/chat.css">
 </head>
 <body>
-    <section>
-        <div>A centered chat box app</div>
-        <div>噪音留言板</div>
-    </section>
+    <nav>
+        <p class="title">Pikxl</p>
+        <a href="/board" id="board_btn">留言板</a>
+        <a href="/chat" id="chat_btn">聊天室</a>
+        <a href="/stock" id="about_btn">股票</a>
+        <a href="/apod" id="about_btn">APOD</a>
+        <a href="#" id="logout_btn" class="logout_btn" onclick="logout()">Logout</a>
+    </nav>
+    <div class="chat-container">
+        <div class="chat-main">
+            <div class="chat-messages" id="chat-messages">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Type a message..." />
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+        <div class="chat-sidebar">
+            <h3>Users in Room</h3>
+            <ul id="user-list">
+                <!-- User names will appear here -->
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
