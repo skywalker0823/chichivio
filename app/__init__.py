@@ -7,6 +7,7 @@ from datetime import timedelta
 from pathlib import Path
 import secrets
 from dotenv import load_dotenv
+import os
 from database import planet_scale, mongo
 
 
@@ -17,13 +18,16 @@ def create_app():
     app = Flask(__name__, static_url_path='/',
                 static_folder = Path(__file__).parent.parent / 'static',
                 template_folder = Path(__file__).parent.parent / 'templates')
+    
+    load_dotenv()
 
     # firebase_admin initialize
     # cred = credentials.Certificate('../keys/firebase-adminsdk.json')
     # initialize_app(cred)
 
     # 設定JWT的secret key,should change to environment for env
-    app.config['JWT_SECRET_KEY'] = secrets.token_hex(16)
+    # app.config['JWT_SECRET_KEY'] = secrets.token_hex(16)
+    app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 
     # 將JWT存在cookies中
     app.config['JWT_TOKEN_LOCATION'] = ['cookies']
