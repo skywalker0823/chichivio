@@ -7,12 +7,12 @@ dotenv.load_dotenv()
 class DynamoDB:
     def __init__(self):
         self.dynamodb = boto3.resource(
-            'dynamodb',
-            region_name=os.getenv('AWS_REGION'),
-            aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-            aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
+            'dynamodb'
+            # region_name=os.getenv('AWS_REGION'),
+            # aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+            # aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
         )
-        self.table = self.dynamodb.Table(os.getenv('pikxl_dynamoDB'))
+        self.table = self.dynamodb.Table(os.getenv('DYNAMO_TABLE'))
 
     def is_connected(self):
         try:
