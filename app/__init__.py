@@ -105,7 +105,7 @@ def create_app():
         response = make_response(jsonify({'msg': 'Token verification failed'}), 401)
         return render_template('index.html', response=response)
 
-    print("MongoDB is connected" if mongo.Mongo().is_connected() else "MongoDB FAILED to connect")
+    # print("MongoDB is connected" if mongo.Mongo().is_connected() else "MongoDB FAILED to connect")
     # print("PlanetScaleDB is connected" if planet_scale.DB().is_connected() else "PlanetScaleDB FAILED to connect")
     
     return app

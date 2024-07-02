@@ -4,36 +4,37 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, set_access
 from database.mongo import Mongo
 import os, dotenv
 from database.planet_scale import DB
+from database.dynamoDB import DynamoDB
 
 dotenv.load_dotenv()
 
 # database = DB()
+database = DynamoDB()
 
-database = Mongo()
+# database = Mongo()
 signup_api = Blueprint('signin_api', __name__, url_prefix='/api/signup')
 
 # client = MongoClient(os.getenv('DB_CONNECTION_DATA'))
 
 
-# 暫時取消會員申請功能
-# @signup_api.route('/', methods=['POST'])
-# def signup():
-#     print(request.json,"signup hit!")
-#     username = request.json['username']
-#     password = request.json['password']
-#     try:
-#         result = database.get_user(username,password)
-#         if result:
-#             return jsonify({'message': 'signup','status': '1'})
-#         else:
-#             database.insert_user(username,password)
-#             response = jsonify({'message': 'signup','status': "0"})
-#             access_token = create_access_token(identity=username)
-#             set_access_cookies(response, access_token)
-#             return response
-#     except Exception as e:
-#         print(e)
-#         return jsonify({'message': 'db_test','status': '1'})
+@signup_api.route('/', methods=['POST'])
+def signup():
+    print(request.json,"signup hit!")
+    username = request.json['username']
+    password = request.json['password']
+    try:
+        result = database.get_user(username,password)
+        if result:
+            return jsonify({'message': 'signup','status': '1'})
+        else:
+            database.insert_user(username,password)
+            response = jsonify({'message': 'signup','status': "0"})
+            access_token = create_access_token(identity=username)
+            set_access_cookies(response, access_token)
+            return response
+    except Exception as e:
+        print(e)
+        return jsonify({'message': 'db_test','status': '1'})
 
 
 
