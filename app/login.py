@@ -36,6 +36,7 @@ def login():
         result = database.get_user(username,password)
         print(result)
         if result:
+            print("user get, login OK")
             response = jsonify({'message': 'login','status': "0"})
             access_token = create_access_token(identity=username)
             set_access_cookies(response, access_token)

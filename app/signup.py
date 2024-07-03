@@ -25,15 +25,17 @@ def signup():
     try:
         result = database.get_user(username,password)
         if result:
+            print("you have already sign up! please login in")
             return jsonify({'message': 'signup','status': '1'})
         else:
+            print("trying to sign up...")
             database.insert_user(username,password)
             response = jsonify({'message': 'signup','status': "0"})
             access_token = create_access_token(identity=username)
             set_access_cookies(response, access_token)
             return response
     except Exception as e:
-        print(e)
+        print("signup error: ",e)
         return jsonify({'message': 'db_test','status': '1'})
 
 
