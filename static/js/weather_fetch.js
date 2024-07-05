@@ -31,11 +31,6 @@ let enMonth={
     12:"DEC"
 }
 
-let background={
-    sunny:"https://i.pinimg.com/originals/f8/42/6b/f8426bf4f6892dfed16b2e0f583d5670.gif",
-    cloudy:"./img/cloudy.gif",
-    rainy:"https://archive.org/download/ezgifresize1/ezgif%20resize1.gif"
-}
 
 let date;
 let month;
@@ -60,18 +55,18 @@ function getTomorrow() {
 }
 
 // 顯示對應的背景
-function showBackground(wxParameterValue) {
-    if(wxParameterValue == "1" || wxParameterValue == "2" || wxParameterValue == "24" || wxParameterValue == "25"){
-        container.style.backgroundImage="url("+background["sunny"]+")";
-    }
-    else if(wxParameterValue == "3" || wxParameterValue == "4" || wxParameterValue == "5" || wxParameterValue == "6" || wxParameterValue == "7"
-    || wxParameterValue == "26" || wxParameterValue == "27" || wxParameterValue == "28"){
-        container.style.backgroundImage="url("+background["cloudy"]+")";
-    }
-    else{
-        container.style.backgroundImage="url("+background["rainy"]+")";
-    }
-}
+// function showBackground(wxParameterValue) {
+//     if(wxParameterValue == "1" || wxParameterValue == "2" || wxParameterValue == "24" || wxParameterValue == "25"){
+//         container.style.backgroundImage="url("+background["sunny"]+")";
+//     }
+//     else if(wxParameterValue == "3" || wxParameterValue == "4" || wxParameterValue == "5" || wxParameterValue == "6" || wxParameterValue == "7"
+//     || wxParameterValue == "26" || wxParameterValue == "27" || wxParameterValue == "28"){
+//         container.style.backgroundImage="url("+background["cloudy"]+")";
+//     }
+//     else{
+//         container.style.backgroundImage="url("+background["rainy"]+")";
+//     }
+// }
 
 // 顯示天氣狀況圖示
 function showWeatherIcon(wxParameterValue) {
@@ -110,7 +105,7 @@ function render(location, wxParameterName, wxParameterValue, popParameterName, m
     //舒適度
     comfort.innerHTML=ciParameterName;
     //背景圖
-    showBackground(wxParameterValue);
+    // showBackground(wxParameterValue);
 }
 
 /** fetch weather API  section  */
