@@ -21,10 +21,6 @@ def create_app():
     
     load_dotenv()
 
-    # firebase_admin initialize
-    # cred = credentials.Certificate('../keys/firebase-adminsdk.json')
-    # initialize_app(cred)
-
     # 設定JWT的secret key,should change to environment for env
     # app.config['JWT_SECRET_KEY'] = secrets.token_hex(16)
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')

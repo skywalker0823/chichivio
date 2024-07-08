@@ -50,3 +50,32 @@ class DynamoDB:
             print("DB insert user failed, Exception occurred: {}".format(e))
             return None
 
+
+class DynamoDB_board(DynamoDB):
+    def __init__(self):
+        super().__init__()
+        self.table = self.dynamodb.Table(os.getenv('DYNAMO_TABLE_BOARD'))
+
+    def get_board(self):
+        try:
+            response = self.table.scan()
+            items = response['items']
+            return items
+        except Exception as e:
+            return None
+
+    def post_board(self, title, text, time): 
+        try:
+            response = self.table.put_item(
+                Item={
+                    'id': str(uuid.uuid4()),  # Generate a unique ID for the post
+                    'title': title,
+                    'text': text,
+                    'time': time
+                }
+            )
+            return response  # Return the DynamoDB response for potential further processing
+        except Exception as e:
+            # Handle errors (e.g., log the error, return an error status)
+            print(f"Error posting to board: {e}")
+            return None
