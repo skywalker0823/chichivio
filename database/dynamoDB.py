@@ -1,6 +1,7 @@
 import boto3
 import os
 import dotenv
+import datetime
 
 dotenv.load_dotenv()
 
@@ -58,20 +59,24 @@ class DynamoDB_board(DynamoDB):
 
     def get_board(self):
         try:
+            print("DB trying to get board...")
             response = self.table.scan()
-            items = response['items']
+            print(response)
+            items = response['Items']
+            print("items:",items) 
             return items
         except Exception as e:
             return None
 
-    def post_board(self, title, text, time): 
+    def post_board(self, title, text): 
         try:
             response = self.table.put_item(
                 Item={
-                    'id': str(uuid.uuid4()),  # Generate a unique ID for the post
+                    #預計 id 組成: user_id+timestamp
+                    'comment_id': datetime.datetime.now().strftime("%Y%m%d%H%M%S"),
                     'title': title,
-                    'text': text,
-                    'time': time
+                    'text': text
+                    # 'time': time
                 }
             )
             return response  # Return the DynamoDB response for potential further processing

@@ -24,7 +24,8 @@ createMessageElement = (message) => {
 
     const time = document.createElement('p');
     time.classList.add('message-time');
-    time.innerText = message.time;
+    // time.innerText = message.time; 暫時 之後要改掉!
+    time.innerText = moment(message.comment_id, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
     div.appendChild(time);
   
   return div;

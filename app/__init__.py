@@ -29,7 +29,7 @@ def create_app():
     app.config['JWT_TOKEN_LOCATION'] = ['cookies']
 
     # 設置JWT過期時間
-    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=15)
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=7)
 
     jwt = JWTManager(app)
 
