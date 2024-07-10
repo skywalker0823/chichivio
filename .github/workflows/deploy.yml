@@ -26,9 +26,14 @@ jobs:
         ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IP << 'EOF'
           sudo -i
           cd /home/ubuntu/dev/chichivio
-          git pull
+          git pull --rebase
+          docker-compose down
+          docker-compose -f docker-compose.yaml up -d --build
           timestamp=$(date '+%Y-%m-%d_%H-%M-%S')
+          git_log=$(git log -1 --pretty=format:"%h - %an, %ar : %s")
           echo "Deployment at $timestamp" >> /tmp/deployment_log.txt
+          echo "Latest commit: $git_log" >> /tmp/deployment_log.txt
+          echo "" >> /tmp/deployment_log.txt
         EOF
 
 
