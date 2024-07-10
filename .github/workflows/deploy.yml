@@ -35,16 +35,3 @@ jobs:
           echo "Latest commit: $git_log" >> /tmp/deployment_log.txt
           echo "" >> /tmp/deployment_log.txt
         EOF
-
-
-    # - name: Deploy to EC2
-    #   run: |
-    #     ssh -o StrictHostKeyChecking=no ec2-user@$EC2_IP << 'EOF'
-    #       cd /path/to/your/repository
-    #       git pull origin main
-    #       docker-compose down
-    #       docker-compose build
-    #       docker-compose up -d
-    #       timestamp=$(date '+%Y-%m-%d_%H-%M-%S')
-    #       echo "Deployment at $timestamp" > /tmp/deployment_$timestamp.txt
-    #     EOF

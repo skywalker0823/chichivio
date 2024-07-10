@@ -91,7 +91,7 @@ login_display_control = (login_status) => {
         login_container.style.display = 'block';
         login_message.style.display = 'none';
         logout_btn.style.display = 'none';
-        window.location.href="/"
+        // window.location.href="/" 這段會引起嚴重 bug
     }
 }
 
