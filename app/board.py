@@ -70,3 +70,15 @@ def post_board():
         return jsonify({'message': 'post_board','status': '1'})
 
 
+@board_api.route('/', methods=['DELETE'])
+@jwt_required()
+def delete_board():
+    print("delete_board hit!")
+    comment_id = request.args.get('comment_id')
+    print(comment_id)
+    result = board_db.delete_board(comment_id)
+    if result:
+        return jsonify({'message': 'delete_board','status': '0'})
+    else:
+        return jsonify({'message': 'delete_board_db','status': '1'})
+    

@@ -84,3 +84,16 @@ class DynamoDB_board(DynamoDB):
             # Handle errors (e.g., log the error, return an error status)
             print(f"Error posting to board: {e}")
             return None
+        
+    def delete_board(self, comment_id):
+        try:
+            response = self.table.delete_item(
+                Key={
+                    'comment_id': comment_id
+                }
+            )
+            return response  # Return the DynamoDB response for potential further processing
+        except Exception as e:
+            # Handle errors (e.g., log the error, return an error status)
+            print(f"Error deleting from board: {e}")
+            return None

@@ -11,11 +11,24 @@ let loading = false;
 createMessageElement = (message) => {
   const div = document.createElement('div');
   div.classList.add('message');
+  //set ID
+  div.id = `message-${message.comment_id}`;
+
+  const message_top = document.createElement('div');
+  //把格式放好
   
   const title = document.createElement('h2');
   title.classList.add('message-title');
   title.innerText = message.title;
   div.appendChild(title);
+
+  const delete_btn = document.createElement('button');
+  delete_btn.classList.add('delete-btn');
+  delete_btn.innerText = 'X';
+  delete_btn.addEventListener('click', () => {
+    deleteMessage(message.comment_id);
+  });
+  div.appendChild(delete_btn);
   
   const text = document.createElement('p');
   text.classList.add('message-text');
@@ -24,6 +37,7 @@ createMessageElement = (message) => {
 
     const time = document.createElement('p');
     time.classList.add('message-time');
+    console.log(message);
     // time.innerText = message.time; 暫時 之後要改掉!
     time.innerText = moment(message.comment_id, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
     div.appendChild(time);
@@ -40,7 +54,7 @@ get_cookie = (name) => {
 postMessage = async() => {
     const title = document.getElementById('message-title').value;
     const text = document.getElementById('message-text').value;
-    let time = moment().format('YYYY-MM-DD HH:mm:ss');
+    let time = moment().format('YYYYMMDDHHmmss');
     if(title == "" || text == ""){
         console.log("post_message_error, empty title or text");
         return;
@@ -59,7 +73,7 @@ postMessage = async() => {
     const result = await response.json();
     if(result.status == "0"){
         console.log("post_message_ok");
-        const message = { title: title, text: text , time: time};
+        const message = { title: title, text: text , comment_id: time };
         const messageElement = createMessageElement(message);
         messageBoard.insertBefore(messageElement, messageBoard.firstChild);
         document.getElementById('message-title').value = '';
@@ -112,4 +126,26 @@ loadMessages = async() => {
     }
     page++;
     loading = false;
+}
+
+deleteMessage = async(comment_id) => {
+    const options = {
+        method: 'DELETE',
+        credentials: 'same-origin',
+        headers: {
+            'X-CSRF-TOKEN': get_cookie('csrf_access_token'),
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const response = await fetch(`/api/board/?comment_id=${comment_id}`, options);
+    const result = await response.json();
+    console.log(result);
+    if(result.status == "0"){
+        console.log("delete_message_ok");
+        const messageElement = document.getElementById(`message-${comment_id}`);
+        messageBoard.removeChild(messageElement);
+        return;
+    }
+    console.log("delete_message_error");
 }
