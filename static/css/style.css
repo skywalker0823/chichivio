@@ -41,6 +41,12 @@ nav a {
 nav a:hover {
     text-decoration: underline;
 }
+.board_msg{
+  display: flex;
+  justify-content: center;
+  color: darkorange;
+  border: 1px solid black;
+}
 main {
     margin: 20px;
 }
