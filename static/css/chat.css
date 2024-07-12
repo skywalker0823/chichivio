@@ -10,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #0b0c1b;
+    background: #E5E5E5;
     flex-direction: column;
 }
 
@@ -18,8 +18,12 @@ nav {
     background-color: #F7F0E4;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+}
 
+nav a{
+    text-decoration: none;
+    padding: 10px;
 }
 
 .chat-container {

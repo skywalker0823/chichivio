@@ -90,6 +90,7 @@ login_display_control = (login_status) => {
     }else{
         login_container.style.display = 'block';
         login_message.style.display = 'none';
+        // login_message.innerHTML = "登入資訊錯誤";
         logout_btn.style.display = 'none';
         // window.location.href="/" 這段會引起嚴重 bug
     }
