@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
     <link rel="stylesheet" href="/css/chat.css">
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 </head>
 <body>
     <nav>
@@ -18,6 +19,12 @@
         <div class="chat-main">
             <div class="chat-messages" id="chat-messages">
                 <!-- Messages will appear here -->
+                <div class="chat-system">System message</div>
+                <div class="chat-me">My message</div>
+                <div class="chat-other">Other message</div>
+                <div class="chat-me">My message</div>
+                <div class="chat-other">Other message</div>
+                <div class="chat-me">My message</div>
             </div>
             <div class="chat-input">
                 <input type="text" id="message-input" placeholder="Type a message..." />

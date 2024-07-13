@@ -6,6 +6,6 @@ COPY . /app
 
 RUN pip install -r requirements.txt
 
-# CMD ["python3", "run.py"]
+CMD ["python3", "run.py"]
 
-CMD ["waitress-serve", "--port=5000", "run:app"]
+# CMD ["waitress-serve", "--port=5000", "run:app"]

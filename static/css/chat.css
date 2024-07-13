@@ -94,3 +94,17 @@ nav a{
 .chat-sidebar li {
     padding: 5px 0;
 }
+
+.chat-other{
+    text-align: left;
+}
+
+.chat-me{
+    text-align: right;
+}
+
+.chat-system{
+    color: #007bff;
+    font-weight: bold;
+    text-align: center;
+}

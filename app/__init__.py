@@ -9,6 +9,7 @@ import secrets
 from dotenv import load_dotenv
 import os
 from database import planet_scale, mongo, dynamoDB
+from flask_socketio import SocketIO
 
 
 
@@ -35,6 +36,8 @@ def create_app():
 
     CORS(app)
 
+    socketio = SocketIO(app, async_mode='eventlet')
+
     from app.login import login_api
     from app.other import other_api
     from app.member import member_api
@@ -51,6 +54,11 @@ def create_app():
     app.register_blueprint(stock_api)
     app.register_blueprint(apod_api)
 
+    #確認用
+    @socketio.on('system')
+    def handle_message(data):
+        print('Message received: ' + data['data'])
+        socketio.emit('system-response', {'data': 'Response from server: '+ data['data']})
 
     @app.route('/', methods=['GET'])
     def index():
@@ -105,4 +113,4 @@ def create_app():
     # print("PlanetScaleDB is connected" if planet_scale.DB().is_connected() else "PlanetScaleDB FAILED to connect")
     print("DynamoDB is connected" if dynamoDB.DynamoDB().is_connected() else "DynamoDB FAILED to connect")
 
-    return app
+    return app, socketio
