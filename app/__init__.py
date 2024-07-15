@@ -36,7 +36,7 @@ def create_app():
 
     CORS(app)
 
-    socketio = SocketIO(app, async_mode='gevent')
+    socketio = SocketIO(app, async_mode='gevent', cors_allowed_origins="*")
 
     from app.login import login_api
     from app.other import other_api
