@@ -1,6 +1,7 @@
+
+const socket = io()
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Chat initializing...');
-    let socket = io();
             socket.on('connect', function() {
                 console.log('WebSocket connected!');
                 socket.send('User has connected!');
@@ -29,5 +30,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 // time: moment().format('YYYYMMDDHHmmss')
                 data: "websocket OK"
             })
+
+            document.getElementById('send-button').addEventListener('click', sendMessage);
+            document.getElementById('message-input').addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            
 });
 
+
+sendMessage = () => {
+    console.log("sending msg")
+    let message = document.getElementById('message-input').value;
+    socket.emit("message",{
+        // user: get_cookie('username'),
+        // message: document.getElementById('message-input').value,
+        // time: moment().format('YYYYMMDDHHmmss')
+        data: message
+    })
+    document.getElementById('message-input').value = '';
+};

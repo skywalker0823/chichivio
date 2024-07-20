@@ -3,12 +3,21 @@ from flask_jwt_extended import create_access_token, create_refresh_token, jwt_re
 from pymongo import MongoClient
 from database import dynamoDB
 import os,dotenv
+import boto3
 
 dotenv.load_dotenv()
 
 board_api = Blueprint('board', __name__, url_prefix='/api/board')
 
 board_db = dynamoDB.DynamoDB_board()
+
+s3_client = boto3.client(
+    's3',
+    aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID_S3'),
+    aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY_S3')
+)
+
+BUCKET_NAME = 'pikxl-main'
 
 # client = MongoClient(os.getenv('DB_CONNECTION_DATA'))
 
@@ -82,3 +91,28 @@ def delete_board():
     else:
         return jsonify({'message': 'delete_board_db','status': '1'})
     
+@board_api.route('/upload', methods=['POST'])
+def upload_board():
+
+    if 'file' not in request.files:
+        print("no file part")
+        return jsonify(success=False, message='No file part')
+    else:
+        file = request.files['file']
+        if file.filename == '':
+            return jsonify(success=False, message='No selected file')
+        else:
+            try:
+
+                # Celery should use here to upload images
+                file.save(f"tmp/{file.filename}")
+                # print("上傳中...")
+                # response = s3_client.upload_file('/images/test.img',BUCKET_NAME,)
+                # print(response)
+                print("上傳成功...")
+                os.remove(f"tmp/{file.filename}")
+                return jsonify(success=True, message='File uploaded successfully')
+            except Exception as e:
+                print("上傳錯誤")
+                print(e)
+                return jsonify(success=False, message=str(e))

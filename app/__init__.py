@@ -45,6 +45,7 @@ def create_app():
     from app.signup import signup_api
     from app.stock import stock_api
     from app.apod import apod_api
+    from app.chat import chat_api
 
     app.register_blueprint(login_api)
     app.register_blueprint(other_api)
@@ -53,6 +54,7 @@ def create_app():
     app.register_blueprint(signup_api)
     app.register_blueprint(stock_api)
     app.register_blueprint(apod_api)
+    app.register_blueprint(chat_api)
 
     #確認用
     @socketio.on('system')

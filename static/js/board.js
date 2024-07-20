@@ -59,6 +59,29 @@ postMessage = async() => {
         console.log("post_message_error, empty title or text");
         return;
     }
+
+    //Image upload is here
+    const fileInput = document.getElementById('file-input');
+    const file = fileInput.files[0];
+    if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await fetch('/api/board/upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            console.log("image upload success")
+        } else {
+            console.log("image upload failed")
+        }
+    } else {
+        console.log("no img need to upload")
+    }
+
     const options = {
         method: 'POST',
         credentials: 'same-origin',
@@ -78,9 +101,12 @@ postMessage = async() => {
         messageBoard.insertBefore(messageElement, messageBoard.firstChild);
         document.getElementById('message-title').value = '';
         document.getElementById('message-text').value = '';
+        fileInput.remove();
         return;
+    }else{
+        console.log("post_message_error");
+        fileInput.remove();
     }
-    console.log("post_message_error");
 }
 
 
@@ -113,7 +139,9 @@ loadMessages = async() => {
     const messages = await response.json();
     console.log(messages);
     data = messages.messages;
-    console.log(data);
+    //按照 timestamp 排序
+    data.sort((a,b) => a.comment_id - b.comment_id)
+
     // messages.forEach(message => {
     //     const messageElement = createMessageElement(message);
     //     messageBoard.appendChild(messageElement);
@@ -149,3 +177,29 @@ deleteMessage = async(comment_id) => {
     }
     console.log("delete_message_error");
 }
+
+
+//board img Uploader
+
+// document.getElementById('upload-button').addEventListener('click', async () => {
+//     const fileInput = document.getElementById('file-input');
+//     const file = fileInput.files[0];
+//     if (file) {
+//         const formData = new FormData();
+//         formData.append('file', file);
+
+//         const response = await fetch('/api/board/upload', {
+//             method: 'POST',
+//             body: formData
+//         });
+
+//         const result = await response.json();
+//         if (result.success) {
+//             alert('File uploaded successfully');
+//         } else {
+//             alert('File upload failed');
+//         }
+//     } else {
+//         alert('Please select a file to upload');
+//     }
+// });
