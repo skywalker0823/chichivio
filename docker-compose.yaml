@@ -48,6 +48,7 @@ services:
     restart: always
     volumes:
       - /etc/ssl/pikxl.link:/etc/ssl/pikxl.link
+      - /etc/ssl/wizper.cc:/etc/ssl/wizper.cc
       - /tmp/log/nginx:/var/log/nginx
 
   # redis:

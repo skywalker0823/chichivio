@@ -1,4 +1,3 @@
-# static website, flask app, personal website, huichi
 from flask import Flask, render_template, request, redirect, url_for, jsonify, make_response
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, jwt_required, current_user, get_jwt_identity, create_access_token, set_access_cookies
@@ -11,7 +10,7 @@ import os
 from database import planet_scale, mongo, dynamoDB
 from flask_socketio import SocketIO
 
-
+# board_api = Blueprint('board', __name__, url_prefix='/api/board')
 
 def create_app():
     # 建立Flask物件, 並設定靜態檔案與模板檔案的路徑
@@ -22,7 +21,6 @@ def create_app():
     
     load_dotenv()
 
-    # 設定JWT的secret key,should change to environment for env
     # app.config['JWT_SECRET_KEY'] = secrets.token_hex(16)
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 

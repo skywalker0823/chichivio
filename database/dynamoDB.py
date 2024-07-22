@@ -1,21 +1,9 @@
-import boto3
-import os
-import dotenv
+from . import dynamo_table_user, dynamo_table_board
 import datetime
-
-dotenv.load_dotenv()
 
 class DynamoDB:
     def __init__(self):
-        self.dynamodb = boto3.resource(
-            'dynamodb',
-            region_name=os.getenv('AWS_REGION'),
-
-            # 僅供Local 測試使用 正式環境不需要
-            # aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-            # aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
-        )
-        self.table = self.dynamodb.Table(os.getenv('DYNAMO_TABLE'))
+        self.table = dynamo_table_user
 
     def is_connected(self):
         try:
@@ -30,7 +18,8 @@ class DynamoDB:
             print("DB trying to get user...")
             response = self.table.get_item(
                 Key={
-                    'id': username                }
+                    'id': username                
+                }
             )
             return response.get('Item', None)
         except Exception as e:
@@ -55,7 +44,7 @@ class DynamoDB:
 class DynamoDB_board(DynamoDB):
     def __init__(self):
         super().__init__()
-        self.table = self.dynamodb.Table(os.getenv('DYNAMO_TABLE_BOARD'))
+        self.table = dynamo_table_board
 
     def get_board(self):
         try:
