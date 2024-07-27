@@ -1,5 +1,8 @@
 // console.log when DOM ready
 let login_status = {ok: false};
+let notification = document.getElementById('notifi');
+
+
 
 document.addEventListener('DOMContentLoaded', async() => {
     console.log('DOM ready');
@@ -31,7 +34,7 @@ login = async() => {
         return;
     }
     console.log("log_in_error");
-    login_display_control({ok: false});
+    login_display_control({ok: false, msg:"Login failed"});
 }
 
 logout = async() => {
@@ -73,7 +76,7 @@ auto_login_status_check = async() => {
         return {ok: true,username: result.username}
     }
     console.log("You are not logged in");
-    login_status = {ok: false};
+    login_status = {ok: false,msg: "You are not logged in"};
     console.log(login_status);
     return login_status;
 }
@@ -90,9 +93,7 @@ login_display_control = (login_status) => {
     }else{
         login_container.style.display = 'block';
         login_message.style.display = 'none';
-        // login_message.innerHTML = "登入資訊錯誤";
         logout_btn.style.display = 'none';
-        // window.location.href="/" 這段會引起嚴重 bug
     }
 }
 

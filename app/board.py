@@ -103,16 +103,30 @@ def upload_board():
             return jsonify(success=False, message='No selected file')
         else:
             try:
-
+                # test S3 authication
+                response = s3_client.list_objects_v2(Bucket=BUCKET_NAME, MaxKeys=1)
+                print(response)
+                return jsonify(success=True,message = "OK")
+                
                 # Celery should use here to upload images
-                file.save(f"tmp/{file.filename}")
+                # file.save(f"tmp/{file.filename}")
+                # file.save(file.filename)
                 # print("上傳中...")
-                # response = s3_client.upload_file('/images/test.img',BUCKET_NAME,)
-                # print(response)
-                print("上傳成功...")
-                os.remove(f"tmp/{file.filename}")
-                return jsonify(success=True, message='File uploaded successfully')
+                # try:
+                #     response = s3_client.upload_file(
+                #         Bucket=BUCKET_NAME,Filename=file.filename,Key=file.filename,
+                #     )
+                # except Exception as e:
+                #     print("u[load failed...")
+                #     print(e)
+                #     print(response)
+                #     return jsonify(success=False, message='File could not be uploaded to S3')
+                # finally:
+                #     os.remove(f"tmp/{file.filename}")
+                # print("上傳成功...")
+                # return jsonify(success=True, message='File uploaded successfully')
             except Exception as e:
                 print("上傳錯誤")
                 print(e)
                 return jsonify(success=False, message=str(e))
+
