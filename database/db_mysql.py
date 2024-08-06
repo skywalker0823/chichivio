@@ -5,7 +5,7 @@ from dbutils.pooled_db import PooledDB
 
 dotenv.load_dotenv()
 
-hosts = [os.getenv('DB'), os.getenv('LOCAL_DB')]
+hosts = [os.getenv('DB')]
 
 
 # 請先看mysql 官方文件! https://dev.mysql.com/doc/connector-python/en/connector-python-example-connecting.html
