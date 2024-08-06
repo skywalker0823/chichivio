@@ -45,9 +45,8 @@ nav a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    max-width: 500px;
-    height: 500px;
+    width: 250px;
+    height: 250px;
     background-color: #ddd;
     border: 2px solid #ccc;
     margin-bottom: 20px;

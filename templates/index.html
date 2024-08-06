@@ -9,14 +9,15 @@
     <title>Pikxl</title>
 </head>
 <body>
-	<div class="wrapper">
+	<!-- <div>Just remember: Less is more</div> -->
+	<div class="wrapper" id="wrapper">
 	<nav>
 		<p class="title">Pikxl</p>
 		<a href="/board" id="board_btn">留言板</a>
 		<a href="/chat" id="chat_btn"><img src="/images/talk.png"></a>
 		<!-- <a href="/stock" id="about_btn">股票</a> -->
 		<a href="/geo" id="about_btn"><img src="/images/earth.png">New!</a>
-		<a href="/crawler"><img src="/images/spider.png" style="width:16px;height:16px;"></a>
+		<!-- <a href="/crawler"><img src="/images/spider.png" style="width:16px;height:16px;"></a> -->
         <a href="#" id="logout_btn" class="logout_btn" onclick="logout()">Logout</a>
 
 
@@ -34,43 +35,45 @@
 			  </div>
 			</div>
 		  </div>
+		  <div class="login_message" id="login_message">Welcome </div>
 
 
 
 		  
 	</nav>
-	<div class="board_msg">
-		<p>Still under construction</p>
-	</div>
+	<section>
+		<h1 class="title">ColoЯization</h1>
+		<p>Get today's color ideas!</p>
+		<button id="get_color_btn" class="btn">GET</button>
+		<div id="color_copy">Click to copy HEX</div>
+		<div class="sections">
+			<article id="cube_1" onclick="copied(this.id)">
+				<p id="cube_1_color"></p>
+			</article>
+			<article id="cube_2" onclick="copied(this.id)">
+				<p id="cube_2_color"></p>
+			</article>
+			<article id="cube_3" onclick="copied(this.id)">
+				<p id="cube_3_color"></p>
+			</article>
+			<article id="cube_4" onclick="copied(this.id)">
+				<p id="cube_4_color"></p>
+			</article>
+			<article id="cube_5" onclick="copied(this.id)">
+				<p id="cube_5_color"></p>
+			</article>
+		</div>
+	</section>
 	<main>
 		<section>
-              <div class="login_message" id="login_message">Welcome </div>
-
-			<div class="sections">
-				<article>
-					<h2>A</h2>
-					<p></p>
-				</article>
-				<article>
-					<h2>1</h2>
-                    <p>A</p>
-				</article>
-				<article>
-					<h2>3</h2>
-					<p>A</p>
-				</article>
-				<article>
-					<h2>4</h2>
-					<p>B</p>
-				</article>
-			</div>
+            <div class="login_message" id="login_message">Welcome </div>
 
 
 		</section>
 	</main>
-	<footer>
+	<!-- <footer>
 		<p>&copy; 2024 Pikxl. All rights reserved.v1.1</p>
-	</footer>
+	</footer> -->
     <script src="/js/index.js"></script>
 </div>
 </body>

@@ -125,3 +125,60 @@ register = async() => {
 // document.getElementById('signup_btn').addEventListener('click', () => {
 //     alert("Not available yet")
 // });
+
+
+document.getElementById('get_color_btn').addEventListener('click', () => {
+    let wrapper = document.getElementById("wrapper")
+    cube_total = 5;
+    console.log("GET")
+    for(let number = 1; number <= cube_total; number++){
+        color = colorGenerator()
+        document.getElementById("cube_"+number).style.backgroundColor = color
+        document.getElementById("cube_"+number+"_color").innerHTML = color
+        contrastColor = getContrast(color)
+        document.getElementById("cube_"+number+"_color").style.color = contrastColor
+    }
+    wrapper.style.backgroundColor = "#f6f3ed";
+});
+
+
+// Random hex color code generator
+const colorGenerator = () => {
+    const letters = '0123456789ABCDEF' ;
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+const getContrast = (hexColor) => {
+    hexColor = hexColor.replace("#", "");
+  
+    const r = parseInt(hexColor.substr(0, 2), 16);
+    const g = parseInt(hexColor.substr(2, 2), 16);
+    const b = parseInt(hexColor.substr(4, 2), 16);
+  
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  
+    const contrastColor = brightness > 128 ? "#000000" : "#FFFFFF";
+    console.log(contrastColor);
+  
+    return contrastColor;
+};
+  
+const copied = (cube_id) => {
+    let wrapper = document.getElementById("wrapper")
+    let = document.getElementById("color_copy")
+    console.log("clicked",cube_id)
+    // copy the color of this block
+    let color = document.getElementById(cube_id+"_color").innerHTML;
+    console.log(color)
+    navigator.clipboard.writeText(color);
+    color_copy.innerHTML = "Color copied!";
+    // setTimeout(() => {
+    //     color_copy.style.display = "none";
+    // }, 2000);
+    wrapper.style.backgroundColor = color
+}
+

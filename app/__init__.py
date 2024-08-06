@@ -112,6 +112,6 @@ def create_app():
 
     # print("MongoDB is connected" if mongo.Mongo().is_connected() else "MongoDB FAILED to connect")
     # print("PlanetScaleDB is connected" if planet_scale.DB().is_connected() else "PlanetScaleDB FAILED to connect")
-    print("DynamoDB is connected" if dynamoDB.DynamoDB().is_connected() else "DynamoDB FAILED to connect")
+    # print("DynamoDB is connected" if dynamoDB.DynamoDB().is_connected() else "DynamoDB FAILED to connect")
 
     return app, socketio
