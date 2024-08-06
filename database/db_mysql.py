@@ -16,8 +16,8 @@ def get_connection():
             print(host)
         POOL = PooledDB(
             creator=pymysql,
-            maxconnections=7,
-            mincached=3,
+            maxconnections=3,
+            mincached=1,
             blocking=True,
             ping=0,
             host=host,
