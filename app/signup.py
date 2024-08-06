@@ -4,12 +4,14 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, set_access
 from database.mongo import Mongo
 import os, dotenv
 from database.planet_scale import DB
-from database.dynamoDB import DynamoDB
+# from database.dynamoDB import DynamoDB
+from database.db_mysql import User
 
 dotenv.load_dotenv()
 
 # database = DB()
-database = DynamoDB()
+# database = DynamoDB()
+database_user = User()
 
 # database = Mongo()
 signup_api = Blueprint('signin_api', __name__, url_prefix='/api/signup')
@@ -23,13 +25,14 @@ def signup():
     username = request.json['username']
     password = request.json['password']
     try:
-        result = database.get_user(username,password)
+        # result = database.get_user(username,password)
+        result = database_user.get_user_info(username)
         if result:
             print("you have already sign up! please login in")
             return jsonify({'message': 'signup','status': '1'})
         else:
             print("trying to sign up...")
-            database.insert_user(username,password)
+            database_user.insert_user_info({"account": username, "password": password})
             response = jsonify({'message': 'signup','status': "0"})
             access_token = create_access_token(identity=username)
             set_access_cookies(response, access_token)

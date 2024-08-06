@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/geo.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/earth.png" type="image/x-icon">
+    <title>Taiwan Guessr</title>
+</head>
+<body>
+    <nav>
+		<p class="title">Taiwan Guessr</p>
+        <a href="../" id="board_btn">Home</a>
+		<a href="/board" id="board_btn">留言板</a>
+		<a href="/chat" id="chat_btn"><img src="/images/talk.png"></a>
+		<!-- <a href="/stock" id="about_btn">股票</a> -->
+		<a href="/crawler"><img src="/images/spider.png" style="width:16px;height:16px;"></a>
+        <a href="#" id="logout_btn" class="logout_btn" onclick="logout()">Logout</a>
+	</nav>
+    <button id="request_button" onclick="get_img()">下一張</button>
+    
+    <div class="display_area" id="display_area"></div>
+    
+    <div id="county_buttons"></div>
+    
+    <!-- <div class="feedback">你覺得這結果是否正確?</div>
+    <button>正確</button>
+    <button>不太對</button> -->
+    <script src="/js/geo.js"></script>
+</body>
+</html>

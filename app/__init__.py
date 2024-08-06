@@ -42,7 +42,7 @@ def create_app():
     from app.board import board_api
     from app.signup import signup_api
     from app.stock import stock_api
-    from app.apod import apod_api
+    from app.geo import geo_api
     from app.chat import chat_api
 
     app.register_blueprint(login_api)
@@ -51,7 +51,7 @@ def create_app():
     app.register_blueprint(board_api)
     app.register_blueprint(signup_api)
     app.register_blueprint(stock_api)
-    app.register_blueprint(apod_api)
+    app.register_blueprint(geo_api)
     app.register_blueprint(chat_api)
 
     #確認用
@@ -92,9 +92,10 @@ def create_app():
     def stock():
         return render_template('stock.html')
 
-    @app.route('/apod', methods=['GET'])
-    def apod():
-        return render_template('apod.html')
+    @app.route('/geo', methods=['GET'])
+    @jwt_required()
+    def geo():
+        return render_template('geo.html')
 
 
     @jwt.unauthorized_loader

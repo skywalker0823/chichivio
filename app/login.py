@@ -2,14 +2,17 @@ from flask import Blueprint,jsonify, request
 from flask_jwt_extended import jwt_required, create_access_token, set_access_cookies, get_jwt_identity, verify_jwt_in_request
 from database.mongo import Mongo
 import os,dotenv
-from database.dynamoDB import DynamoDB
+# from database.dynamoDB import DynamoDB
+from database.db_mysql import User
 # from database.planet_scale import DB
 
 dotenv.load_dotenv()
 
 # database = Mongo()
 # database = DB()
-database = DynamoDB()
+# database = DynamoDB()
+database_user = User()
+# db = Database()
 
 login_api = Blueprint('login', __name__, url_prefix='/api/login')
 
@@ -33,9 +36,9 @@ def login():
     password = request.json['password']
     print(username,password)
     try:
-        result = database.get_user(username,password)
+        result = database_user.get_user_info(username)
         print(result)
-        if result:
+        if result and password==result["password"]:
             print("user get, login OK")
             response = jsonify({'message': 'login','status': "0"})
             access_token = create_access_token(identity=username)
