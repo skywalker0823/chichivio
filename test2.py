@@ -18,37 +18,44 @@ API_KEY = os.getenv("GOOGLE_MAP_API_KEY")
 
 
 
-def tester():
-    url = 'https://places.googleapis.com/v1/places:searchNearby'
-    payload = {
-        "includedTypes": ["restaurant"],
-        "maxResultCount": 10,
-        "locationRestriction": {
-            "circle": {
-                "center": {
-                    "latitude": 37.7937,
-                    "longitude": -122.3965
-                },
-                "radius": 500.0
-            }
-        }
-    }
+# def tester():
+#     url = 'https://places.googleapis.com/v1/places:searchNearby'
+#     payload = {
+#         "includedTypes": ["restaurant"],
+#         "maxResultCount": 10,
+#         "locationRestriction": {
+#             "circle": {
+#                 "center": {
+#                     "latitude": 37.7937,
+#                     "longitude": -122.3965
+#                 },
+#                 "radius": 500.0
+#             }
+#         }
+#     }
 
-    headers = {
-            'Content-Type': 'application/json',
-            'X-Goog-Api-Key': API_KEY,
-            'X-Goog-FieldMask': 'places.displayName'
-        }
+#     headers = {
+#             'Content-Type': 'application/json',
+#             'X-Goog-Api-Key': API_KEY,
+#             'X-Goog-FieldMask': 'places.displayName'
+#         }
 
-    response = requests.post(url, headers=headers, data=json.dumps(payload))
+#     response = requests.post(url, headers=headers, data=json.dumps(payload))
 
-    if response.status_code == 200:
-        print("Request successful.")
-        print(response.json())
-    else:
-        print("Request failed.")
-        print(f"Status Code: {response.status_code}")
-        print(response.text)
+#     if response.status_code == 200:
+#         print("Request successful.")
+#         print(response.json())
+#     else:
+#         print("Request failed.")
+#         print(f"Status Code: {response.status_code}")
+#         print(response.text)
+
+
+def get_random_taiwan_coords():
+    #本島經緯度區間
+    latitude = random.uniform(21.9, 25.3)
+    longitude = random.uniform(120.0, 122.0)
+    print(latitude, longitude)
 
 if __name__ == "__main__":
-    tester()
+    get_random_taiwan_coords()

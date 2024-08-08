@@ -93,9 +93,13 @@ def create_app():
         return render_template('stock.html')
 
     @app.route('/geo', methods=['GET'])
-    @jwt_required()
+    # @jwt_required()
     def geo():
         return render_template('geo.html')
+    
+    @app.route('/test', methods=['GET'])
+    def test():
+        return render_template('test.html')
 
 
     @jwt.unauthorized_loader

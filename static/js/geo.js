@@ -1,5 +1,9 @@
 let current_ans
 let name
+let embed_iframe = document.getElementById("embed_iframe")
+
+//google's embed key is free & unlimited usage, you can get your own.
+const KEY = "AIzaSyD9wENThy2RH-S6KFufudwJGiKUxsMHHs4"
 
 const countyTranslations = {
     "Taipei City": "台北市",
@@ -34,6 +38,9 @@ document.addEventListener("DOMContentLoaded", async() => {
 get_img = async() => {
     current_ans = null;
     name = null;
+    embed_iframe.src = ""
+    embed_iframe.style.display = "none";
+
     // delete old images
     display_area = document.getElementById("display_area")
     display_area.innerHTML = "";
@@ -45,6 +52,8 @@ get_img = async() => {
 
     current_ans = result.ans;
     name = result.name;
+    place_id = result.place_id;
+    document.getElementById("embed_iframe").src = "https://www.google.com/maps/embed/v1/place?key="+ KEY +"&q=place_id:"+place_id;
 
     // post img
     const img = document.createElement('img');
@@ -73,9 +82,11 @@ check_ans = async(county) => {
 
     if (user_ans == current_ans) {
         alert("正確! 這裡是: "+ current_ans + "的 " + name);
-        await get_img();
+        embed_iframe.style.display = "block";
+        // await get_img();
     } else {
         alert("錯了~ 正確答案是: " + current_ans);
+        embed_iframe.style.display = "block";
     }
 }
 

@@ -5,7 +5,7 @@ let notification = document.getElementById('notifi');
 
 
 document.addEventListener('DOMContentLoaded', async() => {
-    console.log('DOM ready');
+    document.getElementById("get_color_btn").click();
     login_status = await auto_login_status_check();
     login_display_control(login_status);
     // turn url to root
@@ -116,6 +116,8 @@ register = async() => {
     const result = await response.json();
     if(result.status == "0"){
         console.log("register_ok");
+        // status = await auto_login_status_check();
+        // login_display_control(status);
         return;
     }
     console.log("register_error");
@@ -170,15 +172,39 @@ const getContrast = (hexColor) => {
 const copied = (cube_id) => {
     let wrapper = document.getElementById("wrapper")
     let = document.getElementById("color_copy")
-    console.log("clicked",cube_id)
+    let cube = document.getElementById(cube_id)
     // copy the color of this block
     let color = document.getElementById(cube_id+"_color").innerHTML;
-    console.log(color)
     navigator.clipboard.writeText(color);
     color_copy.innerHTML = "Color copied!";
+
+    // 點按複製之後 變化方塊
+    cube.style.backgroundColor = "lightgray";
+    // cube.style.transition = "0.5s";
+    // cube.style.height = "120px";
+    // cube.style.width = "120px";
+    setTimeout(() => {
+        cube.style.backgroundColor = current_cube_color;
+        // cube.style.height = "100px";
+        // cube.style.width = "100px";
+    }, 200);
+
+
+    
     // setTimeout(() => {
     //     color_copy.style.display = "none";
     // }, 2000);
-    wrapper.style.backgroundColor = color
+    // wrapper.style.backgroundColor = color
 }
 
+
+const changeBackgroundColor = (cube_id) => {
+    console.log("over!")
+    current_cube_color = document.getElementById(cube_id+"_color").innerHTML;
+    console.log(current_cube_color)
+    document.getElementById("title").style.color = current_cube_color
+}
+
+const resetBackgroundColor = () => {
+    document.getElementById("title").style.color = "black"
+}
