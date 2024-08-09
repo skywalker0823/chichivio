@@ -3,6 +3,7 @@ import requests
 import os
 import random
 from modules.geo_code_check import check_place_by_geocode
+from modules.to_telegram import msg_to_telegram
 
 dotenv.load_dotenv()
 
@@ -79,6 +80,7 @@ def fetcher():
         name = place["name"]
         place_id = place["place_id"]
         ans = check_place_by_geocode(location)
+        msg_to_telegram(str(place))
         return {'photo_reference': photo_reference, 'photo_url': photo_url, 'ans': ans, 'name': name, 'place_id':place_id}
     else:
         print("No photo available for this place.")

@@ -29,6 +29,19 @@ class Builder:
         """
         self.cursor.execute(sql)
         self.conn.commit()
+    
+    def geo_score(self):
+        sql = """
+            CREATE TABLE geo_score (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                member_id INT NOT NULL,
+                total_guess INT NOT NULL default 0,
+                total_correct INT NOT NULL default 0,
+                FOREIGN KEY (member_id) REFERENCES member(member_id) ON DELETE CASCADE
+            )
+        """
+        self.cursor.execute(sql)
+        self.conn.commit()
 
 
     def finallize(self):
@@ -44,5 +57,6 @@ if __name__ == "__main__":
     builder.start_initialize()
     print("databases connected, start building tables...")
     builder.build_member()
+    builder.geo_score()
     print("OK")
     builder.finallize()

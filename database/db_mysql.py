@@ -62,3 +62,10 @@ class User:
 class Comments:
      def get_comments(self, post_id):
         pass
+
+class Geo:
+    def get_geo_score(self, member_id):
+        pass
+
+    def update_geo_score(self, member_id, data):
+        pass

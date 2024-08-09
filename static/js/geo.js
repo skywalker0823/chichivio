@@ -41,7 +41,7 @@ get_img = async() => {
     embed_iframe.src = ""
     embed_iframe.style.display = "none";
 
-    // delete old images
+    // delete old images then disaplay loading image
     display_area = document.getElementById("display_area")
     display_area.innerHTML = "";
 
@@ -110,3 +110,9 @@ button_generate = async() => {
     });
 
 }
+
+
+// loading test
+document.getElementById('display_area').addEventListener("emptied", ()=>{
+    console.log("Loading!")
+})

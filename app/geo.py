@@ -4,7 +4,6 @@ from flask import request
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
 import os,dotenv
 from modules.geo_fetch import fetcher
-from modules.to_telegram import msg_to_telegram
 
 dotenv.load_dotenv()
 
@@ -27,5 +26,4 @@ def get_geo():
     
     # upload img to s3 from img url
     # Send notifit to TG and monitor route
-    msg_to_telegram(str(fetch_result))
     return jsonify(fetch_result)
