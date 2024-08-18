@@ -1,16 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, make_response
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, jwt_required, current_user, get_jwt_identity, create_access_token, set_access_cookies
-from datetime import datetime
 from datetime import timedelta
 from pathlib import Path
 import secrets
 from dotenv import load_dotenv
 import os
-from database import planet_scale, mongo, dynamoDB
 from flask_socketio import SocketIO
-
-# board_api = Blueprint('board', __name__, url_prefix='/api/board')
+from database.models import db
 
 def create_app():
     # 建立Flask物件, 並設定靜態檔案與模板檔案的路徑
@@ -23,12 +20,15 @@ def create_app():
 
     # app.config['JWT_SECRET_KEY'] = secrets.token_hex(16)
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
-
-    # 將JWT存在cookies中
     app.config['JWT_TOKEN_LOCATION'] = ['cookies']
-
-    # 設置JWT過期時間
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=7)
+
+    # SQL Alchemy Database
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
 
     jwt = JWTManager(app)
 
@@ -41,7 +41,6 @@ def create_app():
     from app.member import member_api
     from app.board import board_api
     from app.signup import signup_api
-    from app.stock import stock_api
     from app.geo import geo_api
     from app.chat import chat_api
 
@@ -50,7 +49,6 @@ def create_app():
     app.register_blueprint(member_api)
     app.register_blueprint(board_api)
     app.register_blueprint(signup_api)
-    app.register_blueprint(stock_api)
     app.register_blueprint(geo_api)
     app.register_blueprint(chat_api)
 
@@ -87,11 +85,6 @@ def create_app():
     def chat():
         return render_template('chat.html')
 
-    @app.route('/stock', methods=['GET'])
-    @jwt_required()
-    def stock():
-        return render_template('stock.html')
-
     @app.route('/geo', methods=['GET'])
     # @jwt_required()
     def geo():
@@ -101,12 +94,11 @@ def create_app():
     def test():
         return render_template('test.html')
 
-
     @jwt.unauthorized_loader
     def unauthorized_response(callback):
         print("trigger unauthorized_response")
-        response = make_response(jsonify({'msg': 'Unauthorized'}), 401)
-        return redirect('/')
+        return make_response(jsonify({'msg': 'You Are Unauthorized.','status': 401}), 401)
+
     
     @jwt.token_verification_failed_loader
     def token_verification_failed_response(callback):

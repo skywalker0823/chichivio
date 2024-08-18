@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Board ready');
     loadMessages();
@@ -12,7 +13,7 @@ createMessageElement = (message) => {
   const div = document.createElement('div');
   div.classList.add('message');
   //set ID
-  div.id = `message-${message.comment_id}`;
+  div.id = `message-${message.id}`;
 
   const message_top = document.createElement('div');
   //把格式放好
@@ -26,20 +27,21 @@ createMessageElement = (message) => {
   delete_btn.classList.add('delete-btn');
   delete_btn.innerText = 'X';
   delete_btn.addEventListener('click', () => {
-    deleteMessage(message.comment_id);
+    deleteMessage(message.id);
   });
   div.appendChild(delete_btn);
   
   const text = document.createElement('p');
   text.classList.add('message-text');
-  text.innerText = message.text;
+  text.innerText = message.content;
   div.appendChild(text);
 
     const time = document.createElement('p');
     time.classList.add('message-time');
     console.log(message);
     // time.innerText = message.time; 暫時 之後要改掉!
-    time.innerText = moment(message.comment_id, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
+    // time.innerText = moment(message.timestamp, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
+    time.innerText = message.timestamp
     div.appendChild(time);
   
   return div;
@@ -53,9 +55,9 @@ get_cookie = (name) => {
 
 postMessage = async() => {
     const title = document.getElementById('message-title').value;
-    const text = document.getElementById('message-text').value;
+    const content = document.getElementById('message-text').value;
     let time = moment().format('YYYYMMDDHHmmss');
-    if(title == "" || text == ""){
+    if(title == "" || content == ""){
         console.log("post_message_error, empty title or text");
         return;
     }
@@ -89,14 +91,15 @@ postMessage = async() => {
             'X-CSRF-TOKEN': get_cookie('csrf_access_token'),
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({"title": title, "text": text, "time": time})
+        body: JSON.stringify({"title": title, "content": content, "time": time})
     };
     console.log("post_message ing")
     const response = await fetch('/api/board/', options)
     const result = await response.json();
+    //這裡要接回ID
     if(result.status == "0"){
         console.log("post_message_ok");
-        const message = { title: title, text: text , comment_id: time };
+        const message = { title: title, content: content , timestamp: time, id:result.id };
         const messageElement = createMessageElement(message);
         messageBoard.insertBefore(messageElement, messageBoard.firstChild);
         document.getElementById('message-title').value = '';
@@ -138,6 +141,7 @@ loadMessages = async() => {
     const response = await fetch(`/api/board/?page=${page}`, options);
     const messages = await response.json();
     console.log(messages);
+    if(messages.status!=0) return;
     data = messages.messages;
     //按照 timestamp 排序
     data.sort((a,b) => a.comment_id - b.comment_id)

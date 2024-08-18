@@ -12,8 +12,8 @@
 	<!-- <div>Just remember: Less is more</div> -->
 	<div class="wrapper" id="wrapper">
 	<nav>
-		<p class="title">Pikxl</p>
-		<a href="/board" id="board_btn">留言板</a>
+		<!-- <p class="title">Pikxl</p> -->
+		<a href="/board" id="board_btn">messages</a>
 		<a href="/chat" id="chat_btn"><img src="/images/talk.png"></a>
 		<!-- <a href="/stock" id="about_btn">股票</a> -->
 		<a href="/geo" id="about_btn"><img src="/images/earth.png">New!</a>
@@ -22,19 +22,17 @@
 
 
 
-		<!-- <div class="login_container" id="login_container">
+		<div class="login_container" id="login_container">
 			<div class="inner_login_container">
-			  <label for="username">Username:</label>
-			  <input class="username_bar" type="text" id="username" name="username" value="" required>
-			  <label for="password">Password:</label>
-			  <input class="password_bar" type="password" id="password" name="password" value="" required>
+			  <input class="username_bar" type="text" id="username" name="username" value="" required placeholder="username">
+			  <input class="password_bar" type="password" id="password" name="password" value="" required placeholder="password">
 			  <div id="notifi"></div>
 			  <div class="btn_box">
-				<button class="login_btn" onclick="login()">Log in</button>
-				  <button class="login_btn" id="signup_btn" onclick="register()">Sign up</button>
+				<button class="login_btn" onclick="login()">Login</button>
+				  <button class="login_btn" id="signup_btn" onclick="register()">Signup</button>
 			  </div>
 			</div>
-		  </div> -->
+		  </div>
 		  <div class="login_message" id="login_message">Welcome </div>
 
 
@@ -74,6 +72,7 @@
 	<!-- <footer>
 		<p>&copy; 2024 Pikxl. All rights reserved.v1.1</p>
 	</footer> -->
+	<script src="/js/loginStatus.js"></script>
     <script src="/js/index.js"></script>
 </div>
 </body>

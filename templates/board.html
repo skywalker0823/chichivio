@@ -9,14 +9,23 @@
     <title>Message board</title>
 </head>
 <body>
-    <header>
-        <h1>Messages</h1>
-    </header>
     <nav>
         <a href="../">Home</a>
         <a href="/chat" id="chat_btn"><img src="/images/talk.png"></a>
         <a href="/geo" id="about_btn"><img src="/images/earth.png">New!</a>
-
+        <a href="#" id="logout_btn" class="logout_btn" onclick="logout()">Logout</a>
+        <div class="login_container" id="login_container">
+			<div class="inner_login_container">
+			  <input class="username_bar" type="text" id="username" name="username" value="" required placeholder="username">
+			  <input class="password_bar" type="password" id="password" name="password" value="" required placeholder="password">
+			  <div id="notifi"></div>
+			  <div class="btn_box">
+				<button class="login_btn" onclick="login()">Log in</button>
+				  <button class="login_btn" id="signup_btn" onclick="register()">Sign up</button>
+			  </div>
+			</div>
+		  </div>
+        <div class="login_message" id="login_message">Welcome </div>
 	</nav>
     <section>
         <div class="message">
@@ -30,6 +39,7 @@
 
 
     </section>
+    <script src="/js/loginStatus.js"></script>
     <script src="/js/board.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
 

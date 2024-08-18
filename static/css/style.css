@@ -28,7 +28,7 @@ nav {
     color: #493F30;
     display: flex;
     justify-content: space-around;
-    padding: 10px;
+    padding: 5px;
     align-items: center;
 }
 
@@ -100,26 +100,34 @@ footer {
     border: none;
     border-bottom: 1px solid #493F30;
     background-color: #F7F0E4;
+    width: 35%;
+    
 }
 
 .username_bar:focus {
     outline: none;
 }
 
+
 .password_bar {
     border: none;
     border-bottom: 1px solid #493F30;
-    background-color: #F7F0E4
+    background-color: #F7F0E4;
+    width: 35%;
 }
+
 
 .password_bar:focus {
     outline: none;
 }
 
+input::placeholder{
+  color: black;
+}
 
 .btn_box{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     width: 100%;
 }
 
@@ -128,7 +136,7 @@ footer {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 12px;
     margin: 4px 2px;
     cursor: pointer;
     background-color: #F7F0E4;
