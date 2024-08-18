@@ -10,8 +10,6 @@ from flask_socketio import SocketIO
 from database.models import db
 
 def create_app():
-    # 建立Flask物件, 並設定靜態檔案與模板檔案的路徑
-    # 使用Path物件, 並使用parent屬性, 可以往上一層目錄
     app = Flask(__name__, static_url_path='/',
                 static_folder = Path(__file__).parent.parent / 'static',
                 template_folder = Path(__file__).parent.parent / 'templates')
@@ -23,7 +21,7 @@ def create_app():
     app.config['JWT_TOKEN_LOCATION'] = ['cookies']
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=7)
 
-    # SQL Alchemy Database
+    # SQLAlchemy
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)

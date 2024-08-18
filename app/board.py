@@ -16,10 +16,6 @@ s3_client = boto3.client(
 
 BUCKET_NAME = 'pikxl-main'
 
-# client = MongoClient(os.getenv('DB_CONNECTION_DATA'))
-
-# messages_db = client["chi_vio_db"]["messages"]
-
 @board_api.route('/', methods=['GET'])
 @jwt_required()
 def get_board():
