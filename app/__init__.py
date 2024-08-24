@@ -9,6 +9,10 @@ import os
 from flask_socketio import SocketIO
 from database.models import db
 
+# Redis
+# import redis
+# redis_client = None
+
 def create_app():
     app = Flask(__name__, static_url_path='/',
                 static_folder = Path(__file__).parent.parent / 'static',

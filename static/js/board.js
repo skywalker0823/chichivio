@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Board ready');
     loadMessages();
@@ -43,6 +42,11 @@ createMessageElement = (message) => {
     // time.innerText = moment(message.timestamp, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
     time.innerText = message.timestamp
     div.appendChild(time);
+
+    const image = document.createElement('img');
+    image.classList.add('message-image');
+    image.src = "https://images.pikxl.link/"+message.image_id;
+    div.appendChild(image);
   
   return div;
 }
@@ -56,50 +60,38 @@ get_cookie = (name) => {
 postMessage = async() => {
     const title = document.getElementById('message-title').value;
     const content = document.getElementById('message-text').value;
+    const fileInput = document.getElementById('file-input');
+    const file = fileInput.files[0];
+    const formData = new FormData();
+    let image_id;
+    let options;
     let time = moment().format('YYYYMMDDHHmmss');
+
     if(title == "" || content == ""){
         console.log("post_message_error, empty title or text");
         return;
     }
 
-    //Image upload is here
-    const fileInput = document.getElementById('file-input');
-    const file = fileInput.files[0];
-    if (file) {
-        const formData = new FormData();
-        formData.append('file', file);
-
-        const response = await fetch('/api/board/upload', {
-            method: 'POST',
-            body: formData
-        });
-
-        const result = await response.json();
-        if (result.success) {
-            console.log("image upload success")
-        } else {
-            console.log("image upload failed")
+    formData.append('file', file);
+    formData.append('data', JSON.stringify({"title": title, "content": content, "time": time}));
+    options = {
+        method: 'POST',
+        body: formData,
+        headers: {
+            // 'Authorization': 'Bearer '+ get_cookie('token'),
+            'X-CSRF-TOKEN': get_cookie('csrf_access_token')
+            // 'Content-Type':'multipart/form-data'
         }
-    } else {
-        console.log("no img need to upload")
     }
 
-    const options = {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-            'X-CSRF-TOKEN': get_cookie('csrf_access_token'),
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({"title": title, "content": content, "time": time})
-    };
-    console.log("post_message ing")
+
     const response = await fetch('/api/board/', options)
     const result = await response.json();
     //這裡要接回ID
+
     if(result.status == "0"){
-        console.log("post_message_ok");
-        const message = { title: title, content: content , timestamp: time, id:result.id };
+        console.log(result)
+        const message = { title: title, content: content , timestamp: time, id:result.id ,image_id:result.image_id};
         const messageElement = createMessageElement(message);
         messageBoard.insertBefore(messageElement, messageBoard.firstChild);
         document.getElementById('message-title').value = '';
@@ -110,8 +102,8 @@ postMessage = async() => {
         console.log("post_message_error");
         fileInput.remove();
     }
-}
 
+}
 
 
 
