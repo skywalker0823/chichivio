@@ -22,11 +22,9 @@ BUCKET_NAME = os.getenv('BUCKET_NAME')
 @jwt_required()
 def get_board():
     print("get_board hit!")
-    page = request.args.get('page')
-    print("page:",page)
-    # 目前抓取全部留言 -> 回傳
+    page = int(request.args.get('page'))
     try:
-        messages = Message.query.all()
+        messages = Message.query.order_by(Message.timestamp.desc()).limit(5).offset((page-1)* 5 ).all()
         print("-->",messages)
         if messages:
             messages_list = []
@@ -48,7 +46,6 @@ def get_board():
         print(e)
         print("error2")
         return jsonify({'message': 'get_board','status': '1'})
-
 
 # Post 主要功能OK
 # 單一請求 同時處理文字與圖片? 
@@ -87,7 +84,6 @@ def post_board():
             img = request.files["file"]
             filename = secure_filename(img.filename)
             file_type = filename.split(".")[1]
-            print(filename, file_type, stamp)
             # 務必將檔案名稱入SQL db
             s3_client.put_object(
                 Body=img,
@@ -101,13 +97,10 @@ def post_board():
             db.session.commit()
             new_message_id = new_message.id
             print("upload_board success!")
-            print(stamp, filename)
             return jsonify({'message': 'upload_board','status': '0','id': new_message_id,'image_id':f'{stamp}_{filename}'})
         except Exception as e:
             print("error!",e)
             return jsonify({'message': 'upload_image_board','status': '1'})
-
-
 
 # 文章刪除
 @board_api.route('/', methods=['DELETE'])

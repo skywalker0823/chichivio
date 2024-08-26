@@ -76,7 +76,7 @@ nav a {
   }
 
   .message-board {
-    max-height: 500px;
+    height: 80vh;
     overflow: auto;
     padding: 10px;
     border: 1px solid #ddd;
@@ -96,3 +96,4 @@ nav a {
     font-weight: bold;
     cursor: pointer;
   }
+

@@ -9,31 +9,29 @@ let page = 1;
 let loading = false;
 
 createMessageElement = (message) => {
-  const div = document.createElement('div');
-  div.classList.add('message');
-  //set ID
-  div.id = `message-${message.id}`;
+    const div = document.createElement('div');
+    div.classList.add('message');
+    div.id = `message-${message.id}`;
 
-  const message_top = document.createElement('div');
-  //把格式放好
-  
-  const title = document.createElement('h2');
-  title.classList.add('message-title');
-  title.innerText = message.title;
-  div.appendChild(title);
+    const message_top = document.createElement('div');
+    
+    const title = document.createElement('h2');
+    title.classList.add('message-title');
+    title.innerText = message.title;
+    div.appendChild(title);
 
-  const delete_btn = document.createElement('button');
-  delete_btn.classList.add('delete-btn');
-  delete_btn.innerText = 'X';
-  delete_btn.addEventListener('click', () => {
-    deleteMessage(message.id);
-  });
-  div.appendChild(delete_btn);
+    const delete_btn = document.createElement('button');
+    delete_btn.classList.add('delete-btn');
+    delete_btn.innerText = 'x';
+    delete_btn.addEventListener('click', () => {
+        deleteMessage(message.id);
+    });
+    div.appendChild(delete_btn);
   
-  const text = document.createElement('p');
-  text.classList.add('message-text');
-  text.innerText = message.content;
-  div.appendChild(text);
+    const text = document.createElement('p');
+    text.classList.add('message-text');
+    text.innerText = message.content;
+    div.appendChild(text);
 
     const time = document.createElement('p');
     time.classList.add('message-time');
@@ -43,10 +41,12 @@ createMessageElement = (message) => {
     time.innerText = message.timestamp
     div.appendChild(time);
 
-    const image = document.createElement('img');
-    image.classList.add('message-image');
-    image.src = "https://images.pikxl.link/"+message.image_id;
-    div.appendChild(image);
+    if(message.image_id){
+        const image = document.createElement('img');
+        image.classList.add('message-image');
+        image.src = "https://images.pikxl.link/"+message.image_id;
+        div.appendChild(image);
+    }
   
   return div;
 }
@@ -96,11 +96,13 @@ postMessage = async() => {
         messageBoard.insertBefore(messageElement, messageBoard.firstChild);
         document.getElementById('message-title').value = '';
         document.getElementById('message-text').value = '';
-        fileInput.remove();
+        if(file){
+            file = "";
+        }
         return;
     }else{
         console.log("post_message_error");
-        fileInput.remove();
+        file = "";
     }
 
 }
@@ -118,9 +120,7 @@ window.addEventListener('scroll', () => {
 
 
 // load messages on DOM ready, 5 at a time
-loadMessages = async() => {
-    if (loading) return;
-    loading = true;
+loadMessages = async(currentPage) => {
     const options = {
         method: 'GET',
         credentials: 'same-origin',
@@ -145,8 +145,8 @@ loadMessages = async() => {
     for (let i = 0; i < data.length; i++) {
         const messageElement = createMessageElement(data[i]);
         // newest is on top
-        // messageBoard.appendChild(messageElement);
-        messageBoard.insertBefore(messageElement, messageBoard.firstChild);
+        messageBoard.appendChild(messageElement);
+        // messageBoard.insertBefore(messageElement, messageBoard.firstChild);
     }
     page++;
     loading = false;
@@ -175,27 +175,19 @@ deleteMessage = async(comment_id) => {
 }
 
 
-//board img Uploader
+// infinite scrolling
+messageBoard.addEventListener('scroll', (e) => {
+    if (loading){
+        console.log("scrolling, but already loading");
+        return
+    };
+    const scrollTop = e.target.scrollTop;
+    const scrollHeight = e.target.scrollHeight;
+    const clientHeight = e.target.clientHeight;
 
-// document.getElementById('upload-button').addEventListener('click', async () => {
-//     const fileInput = document.getElementById('file-input');
-//     const file = fileInput.files[0];
-//     if (file) {
-//         const formData = new FormData();
-//         formData.append('file', file);
-
-//         const response = await fetch('/api/board/upload', {
-//             method: 'POST',
-//             body: formData
-//         });
-
-//         const result = await response.json();
-//         if (result.success) {
-//             alert('File uploaded successfully');
-//         } else {
-//             alert('File upload failed');
-//         }
-//     } else {
-//         alert('Please select a file to upload');
-//     }
-// });
+    if (scrollTop + clientHeight >= scrollHeight - 200) {
+        console.log("scrolling, now fetching page:", page);
+        loading = true;
+        loadMessages(page);
+    }
+})

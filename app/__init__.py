@@ -20,7 +20,6 @@ def create_app():
     
     load_dotenv()
 
-    # app.config['JWT_SECRET_KEY'] = secrets.token_hex(16)
     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
     app.config['JWT_TOKEN_LOCATION'] = ['cookies']
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=7)
@@ -101,7 +100,6 @@ def create_app():
         print("trigger unauthorized_response")
         return make_response(jsonify({'msg': 'You Are Unauthorized.','status': 401}), 401)
 
-    
     @jwt.token_verification_failed_loader
     def token_verification_failed_response(callback):
         print("trigger token_verification_failed_response")
