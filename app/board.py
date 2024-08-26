@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 from database.models import Message,db
 from datetime import datetime
 
-dotenv.load_dotenv()
+# dotenv.load_dotenv()
 
 board_api = Blueprint('board', __name__, url_prefix='/api/board')
 

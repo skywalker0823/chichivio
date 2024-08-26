@@ -2,10 +2,7 @@ from flask import Blueprint
 from flask import jsonify
 from flask import request
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
-import os,dotenv
 from modules.geo_fetch import fetcher
-
-dotenv.load_dotenv()
 
 geo_api = Blueprint('geo', __name__, url_prefix='/api/geo')
 

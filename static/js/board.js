@@ -14,11 +14,12 @@ createMessageElement = (message) => {
     div.id = `message-${message.id}`;
 
     const message_top = document.createElement('div');
+    message_top.classList.add('message-top');
     
     const title = document.createElement('h2');
     title.classList.add('message-title');
     title.innerText = message.title;
-    div.appendChild(title);
+    message_top.appendChild(title);
 
     const delete_btn = document.createElement('button');
     delete_btn.classList.add('delete-btn');
@@ -26,8 +27,10 @@ createMessageElement = (message) => {
     delete_btn.addEventListener('click', () => {
         deleteMessage(message.id);
     });
-    div.appendChild(delete_btn);
-  
+    message_top.appendChild(delete_btn);
+
+    div.appendChild(message_top);
+
     const text = document.createElement('p');
     text.classList.add('message-text');
     text.innerText = message.content;

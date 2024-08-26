@@ -1,9 +1,6 @@
 from flask import Blueprint,jsonify, request
 from flask_jwt_extended import jwt_required, create_access_token, set_access_cookies, get_jwt_identity, verify_jwt_in_request
-import os,dotenv
 from database.models import User,db
-
-dotenv.load_dotenv()
 
 login_api = Blueprint('login', __name__, url_prefix='/api/login')
 

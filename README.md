@@ -45,7 +45,7 @@ This is a personal project which contains multiple features.
 1. Grafana is Done.
 2. DynamoDB(replaced with MySQL)
 3. S3+CloudFront soon or later for image upload function is Done.
-4. Websocket is Done.
+4. Websocket is Done, will add WebRTC support for streaming.
 5. Taiwan Guessr(with Google map API) is good to go, but lots of things to be fixed.
 6. Image uploader for message.
 

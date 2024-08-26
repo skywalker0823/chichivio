@@ -8,10 +8,7 @@ from dotenv import load_dotenv
 import os
 from flask_socketio import SocketIO
 from database.models import db
-
-# Redis
-# import redis
-# redis_client = None
+from database.db_redis import hello
 
 def create_app():
     app = Flask(__name__, static_url_path='/',
@@ -29,7 +26,8 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     with app.app_context():
-        db.create_all()
+        db.create_all()    
+    
 
     jwt = JWTManager(app)
 
@@ -61,7 +59,8 @@ def create_app():
 
     @app.route('/', methods=['GET'])
     def index():
-        return render_template('index.html')
+        redis_response = hello()
+        return render_template('index.html', count = redis_response)
 
     @app.route('/about', methods=['GET'])
     def about():

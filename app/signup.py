@@ -1,9 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import create_access_token, get_jwt_identity, set_access_cookies, verify_jwt_in_request
-import os, dotenv
 from database.models import User,db
-
-dotenv.load_dotenv()
 
 signup_api = Blueprint('signin_api', __name__, url_prefix='/api/signup')
 
