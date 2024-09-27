@@ -18,7 +18,7 @@ auto_login_status_check = async() => {
     const response = await fetch('/api/login/', options)
     const result = await response.json();
     if(result.status == "0"){
-        console.log("You are already logged in");
+        console.log("You are already logged in, welcome ",result.username);
         login_status = {ok: true,username: result.username};
         return {ok: true,username: result.username}
     }
@@ -60,6 +60,8 @@ logout = async() => {
     const result = await response.json();
     if(result.status == "0"){
         console.log("log_out_ok");
+        localStorage.removeItem("token")
+        console.log("token removed successfully")
         login_status = {ok: false};
         console.log(login_status);
         login_display_control(login_status);
@@ -85,6 +87,7 @@ login = async() => {
     };
     const response = await fetch('/api/login/', options)
     const result = await response.json();
+    console.log(result);
     if(result.status == "0"){
         login_status = {ok: true,username: username};
         console.log("log_in_ok");

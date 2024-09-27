@@ -1,5 +1,5 @@
-from flask import Blueprint,jsonify, request
-from flask_jwt_extended import jwt_required, create_access_token, set_access_cookies, get_jwt_identity, verify_jwt_in_request
+from flask import Blueprint,jsonify, request, make_response
+from flask_jwt_extended import jwt_required, create_access_token, set_access_cookies, get_jwt_identity, verify_jwt_in_request, unset_jwt_cookies
 from database.models import User,db
 
 login_api = Blueprint('login', __name__, url_prefix='/api/login')
@@ -23,25 +23,24 @@ def login():
     try:
         user = User.query.filter_by(username=username).first()
         print(user)
-        print(user.username,user.password)
         if user and user.password == password:
             print("user get, login OK")
-            response = jsonify({'message': 'login','status': "0"})
             access_token = create_access_token(identity=username)
+            response = make_response(jsonify({'message': 'login', 'status': "0" , 'username': username}))
             set_access_cookies(response, access_token)
             return response
         else:
             print("wrong user or password")
-            return jsonify({'message': 'login','status': '1'})
+            return jsonify({'message': 'login', 'status': '1'})
     except Exception as e:
         print(e)
-        return jsonify({'message': 'db_test','status': '1'})
+        return jsonify({'message': 'db_test', 'status': '1'})
 
 # DELETE
 @login_api.route('/', methods=['DELETE'])
 def logout():
     print("user logout!")
     response = jsonify({'message': 'logout','status': '0'})
-    response.set_cookie('access_token_cookie', '', expires=0)
+    unset_jwt_cookies(response)
     return response
 

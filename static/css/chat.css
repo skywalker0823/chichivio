@@ -5,6 +5,8 @@
     font-family: Arial, sans-serif;
 }
 
+
+
 body {
     display: flex;
     justify-content: center;
@@ -44,6 +46,8 @@ nav a{
 }
 
 .chat-messages {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     overflow-y: auto;
     padding: 10px;
@@ -95,12 +99,32 @@ nav a{
     padding: 5px 0;
 }
 
+.chat-other, .chat-me {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 15px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    word-wrap: break-word;
+    max-width: 50%;
+}
+
+
 .chat-other{
-    text-align: left;
+    align-self: flex-start;
+    background-color: #e0e0e0; /* 對方訊息的背景色 */
+    color: #333;
+    border-bottom-left-radius: 0px; /* 去掉左下角圓角 */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* 添加陰影 */
 }
 
 .chat-me{
-    text-align: right;
+    align-self: flex-end;
+    background-color: #4caf50; /* 自己訊息的背景色 (綠色) */
+    color: white;
+    border-bottom-right-radius: 0px; /* 去掉右下角圓角 */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* 添加陰影 */
 }
 
 .chat-system{

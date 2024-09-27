@@ -10,7 +10,6 @@ def get_member():
     print("get_member hit!")
     return jsonify({'message': 'get_member','status': '0'})
 
-
 # POST
 @member_api.route('/', methods=['POST'])
 @jwt_required()

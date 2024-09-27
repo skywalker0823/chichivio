@@ -10,7 +10,6 @@ def signup():
     username = request.json['username']
     password = request.json['password']
     try:
-        # result = database.get_user(username,password)
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             print("user already exist, signin failed")
@@ -20,7 +19,7 @@ def signup():
         print("trying to sign up...")
         db.session.add(new_user)
         db.session.commit()
-        response = jsonify({'message': 'signup','status': "0"})
+        response = jsonify({'message': 'signup','status': "0" , 'username': username})
         access_token = create_access_token(identity=username)
         set_access_cookies(response, access_token)
         return response
