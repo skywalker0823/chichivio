@@ -16,6 +16,9 @@ def handle_message(data):
     data["who"] = who
     data["type"] = "user"
     data["message"] = data["msg"]
+    if data["message"] == "test_123":
+        print("A websocket message triggerer")
+        return
     add_message(data)
     socketio.emit('messager_recieve', data)
 

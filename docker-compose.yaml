@@ -52,9 +52,10 @@ services:
       - /tmp/log/nginx:/var/log/nginx
 
   redis:
-      image: redis:latest
-      container_name: pikxl_redis
-      restart: always
-      depends_on:
-        - flask
-      
+    image: redis:latest
+    container_name: pikxl_redis
+    restart: always
+    depends_on:
+      - flask
+    volumes:
+      - /tmp/redis_data:/data
