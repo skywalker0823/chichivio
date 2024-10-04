@@ -6,6 +6,11 @@ scrollToBottom = () => {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
+
+
+// https://socket.io/docs/v4/client-api/#event-connect
+
+//看著文件寫 拜託~
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Chat initializing...');
             socket.on('connect', () => {
@@ -48,6 +53,9 @@ sendMessage = () => {
     isMe = true;
     console.log("sending msg")
     let message = document.getElementById('message-input').value;
+
+
+    // if socket.connected?? add?
     socket.emit("messager_send",{
         // time: moment().format('YYYYMMDDHHmmss')
         msg: message

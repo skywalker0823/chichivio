@@ -79,7 +79,7 @@ def create_app():
         return render_template('chat.html')
 
     @app.route('/geo', methods=['GET'])
-    # @jwt_required()
+    @jwt_required()
     def geo():
         return render_template('geo.html')
     
@@ -90,7 +90,8 @@ def create_app():
     @jwt.unauthorized_loader
     def unauthorized_response(callback):
         print("trigger unauthorized_response")
-        return make_response(jsonify({'msg': 'You Are Unauthorized.','status': 401}), 401)
+        # return make_response(jsonify({'msg': 'You Are Unauthorized.','status': 401}), 401)
+        return redirect('https://http.cat/401')
 
     @jwt.token_verification_failed_loader
     def token_verification_failed_response(callback):

@@ -35,7 +35,7 @@ login_display_control = (login_status) => {
     if(login_status.ok == true){
         login_container.style.display = 'none';
         login_message.style.display = 'block';
-        login_message.innerHTML = "Hello, " + login_status.username;
+        login_message.innerHTML = "Hi, " + login_status.username;
         logout_btn.style.display = 'block';        
     }else{
         login_container.style.display = 'block';
