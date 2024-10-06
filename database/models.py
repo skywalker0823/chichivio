@@ -14,7 +14,7 @@ class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(80), db.ForeignKey('user.username'), nullable=False)
     title = db.Column(db.String(140), nullable=False)
-    content = db.Column(db.String(140), nullable=False)
+    content = db.Column(db.Text, nullable=False)
     timestamp = db.Column(db.DateTime, nullable=False)
     image_id = db.Column(db.String(140), nullable=True)
     

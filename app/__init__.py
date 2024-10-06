@@ -9,6 +9,7 @@ import os
 from flask_socketio import SocketIO
 from database.models import db
 from database.db_redis import hello
+from flask_migrate import Migrate
 
 socketio = SocketIO()
 
@@ -28,7 +29,9 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     with app.app_context():
-        db.create_all()    
+        db.create_all()
+    
+    migrate = Migrate(app, db)
     
     socketio.init_app(app,async_mode='gevent', cors_allowed_origins="*")
 
