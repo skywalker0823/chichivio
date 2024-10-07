@@ -5,7 +5,7 @@
 This is a personal project which contains multiple features.
 ### Message
 
-### Chat(Wizper)
+### Chat
 
 ### GeoGuessr
 
@@ -50,3 +50,8 @@ This is a personal project which contains multiple features.
 6. Image uploader for message.
 
 
+## DB migrate & upgrade (自動的必要性?)
+1. Change the sqlalchemy database settings.
+2. run -> flask db migrate -m "comments"(first time needs to run -> flask db init)
+3. For local run -> flask db upgrade, then check the db is updated. Test&Check.
+4. For production, After pushed to server, in "running" app container, do -> flask db upgrade, then check the db is updated. Done.
