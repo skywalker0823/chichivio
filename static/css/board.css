@@ -3,7 +3,6 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
 
@@ -30,6 +29,10 @@ nav {
   display: none;
 }
 
+img{
+  max-width: 100%;
+  height: auto;
+}
 
 nav a {
     color: #333;
