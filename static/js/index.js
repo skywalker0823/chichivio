@@ -1,7 +1,7 @@
 // console.log when DOM ready
 // let login_status = {ok: false};
 let notification = document.getElementById('notifi');
-
+let isFlipped = false;
 
 
 document.addEventListener('DOMContentLoaded', async() => {
@@ -13,18 +13,18 @@ document.addEventListener('DOMContentLoaded', async() => {
 
 
 
-document.getElementById('get_color_btn').addEventListener('click', () => {
-    let wrapper = document.getElementById("wrapper")
-    cube_total = 5;
-    for(let number = 1; number <= cube_total; number++){
-        color = colorGenerator()
-        document.getElementById("cube_"+number).style.backgroundColor = color
-        document.getElementById("cube_"+number+"_color").innerHTML = color
-        contrastColor = getContrast(color)
-        document.getElementById("cube_"+number+"_color").style.color = contrastColor
-    }
-    wrapper.style.backgroundColor = "#f6f3ed";
-});
+// document.getElementById('get_color_btn').addEventListener('click', () => {
+//     let wrapper = document.getElementById("wrapper")
+//     cube_total = 5;
+//     for(let number = 1; number <= cube_total; number++){
+//         color = colorGenerator()
+//         document.getElementById("cube_"+number).style.backgroundColor = color
+//         document.getElementById("cube_"+number+"_color").innerHTML = color
+//         contrastColor = getContrast(color)
+//         document.getElementById("cube_"+number+"_color").style.color = contrastColor
+//     }
+//     wrapper.style.backgroundColor = "#f6f3ed";
+// });
 
 
 // Random hex color code generator
@@ -89,4 +89,16 @@ const changeBackgroundColor = (cube_id) => {
 
 const resetBackgroundColor = () => {
     document.getElementById("title").style.color = "black"
+}
+
+
+flipCard = () => {
+    const flipper = document.querySelector('.flipper');
+    isFlipped = !isFlipped;
+    
+    if (isFlipped) {
+        flipper.classList.add('flipped');
+    } else {
+        flipper.classList.remove('flipped');
+    }
 }

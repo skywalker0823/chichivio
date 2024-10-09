@@ -39,6 +39,7 @@ This is a personal project which contains multiple features.
 1. moment.js
 2. RWD
 3. HTML/CSS
+4. Aseprite(All icons is hand crafted by myself)
 
 
 ## Memo & Todo
