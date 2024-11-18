@@ -43,7 +43,7 @@ get_img = async() => {
 
     // delete old images then disaplay loading image
     display_area = document.getElementById("display_area")
-    display_area.innerHTML = "";
+    display_area.innerHTML = "Loading...";
 
     console.log("try get img")
     const response = await fetch('/api/geo');
@@ -59,6 +59,7 @@ get_img = async() => {
     const img = document.createElement('img');
     img.src = result.photo_url; // 设置图片的 URL
     img.alt = 'Loaded from photo_url';
+    display_area.innerHTML = "";
     display_area.appendChild(img);
     console.log("done")
 }
