@@ -56,3 +56,8 @@ This is a personal project which contains multiple features.
 2. run -> flask db migrate -m "comments"(first time needs to run -> flask db init)
 3. For local run -> flask db upgrade, then check the db is updated. Test&Check.
 4. For production, After pushed to server, in "running" app container, do -> flask db upgrade, then check the db is updated. Done.
+
+
+
+## Test area
+1. IP updated.
