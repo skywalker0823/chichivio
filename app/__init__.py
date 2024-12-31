@@ -45,6 +45,7 @@ def create_app():
     from app.signup import signup_api
     from app.geo import geo_api
     from app.chat import chat_api
+    from app.county import county_api
 
     app.register_blueprint(login_api)
     app.register_blueprint(member_api)
@@ -52,6 +53,7 @@ def create_app():
     app.register_blueprint(signup_api)
     app.register_blueprint(geo_api)
     app.register_blueprint(chat_api)
+    app.register_blueprint(county_api)
         
     @app.route('/', methods=['GET'])
     def index():
@@ -85,6 +87,17 @@ def create_app():
     @jwt_required()
     def geo():
         return render_template('geo.html')
+    
+    @app.route('/foodprint', methods=['GET'])
+    @jwt_required()
+    def foodprint():
+        return render_template('foodprint.html')
+    
+    @app.route('/foodprint/<county>', methods=['GET'])
+    @jwt_required()
+    def counties(county):
+        print(county)
+        return render_template('county.html', county=county)
     
     @app.route('/test', methods=['GET'])
     def test():

@@ -1,1 +1,5 @@
 Single-database configuration for Flask.
+
+# 資料庫升級程序
+flask db migrate -m "新增 NightMarket 資料表"
+flask db upgrade
