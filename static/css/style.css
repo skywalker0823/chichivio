@@ -26,6 +26,17 @@ nav {
     border-bottom: 1px solid #C7B299;
 }
 
+.navbar-brand{
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-brand:hover{
+  text-decoration: none;
+}
+
 .navbar-nav{
   flex-direction: row;
   justify-content: space-around;
