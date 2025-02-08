@@ -11,7 +11,7 @@ body,h2,p {
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
-    background-color: #f6f3ed;
+    background-color: #0e1217;;
 }
 
 .title{
@@ -379,4 +379,9 @@ input::placeholder{
     cursor: pointer;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+
+.a_card{
+  background-color: #1c1f26;
 }
